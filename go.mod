@@ -1,4 +1,4 @@
-module github.com/itsonlycode/gopass
+module github.com/itsonlycode/gosecret
 
 go 1.16
 

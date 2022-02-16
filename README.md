@@ -1,3 +1,18 @@
+# gosecret
+
+Gosecret is a program for storing structured information encrypted in a git
+repository based on the model used in gopass
+
+# Aknowledgement
+
+All credit goes to gopasswd for all the gopass code in this project.
+This is basically gopass with password related content ripped out of it.
+
+
+# gopass
+
+
+
 <p align="center">
     <img src="docs/logo.png" height="250" alt="gopass Gopher by Vincent Leinweber, remixed from the Renée French original Gopher" title="gopass Gopher by Vincent Leinweber, remixed from the Renée French original Gopher" />
 </p>
