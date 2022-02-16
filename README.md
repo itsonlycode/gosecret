@@ -3,6 +3,8 @@
 Gosecret is a program for storing structured information encrypted in a git
 repository based on the model used in gopass
 
+-- WARNING: NOT READY FOR USE ... might destroy your password store !!!
+
 # Aknowledgement
 
 All credit goes to gopasswd for all the gopass code in this project.
