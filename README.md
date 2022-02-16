@@ -13,14 +13,6 @@ This is basically gopass with password related content ripped out of it.
 
 # gopass
 
-
-
-<p align="center">
-    <img src="docs/logo.png" height="250" alt="gopass Gopher by Vincent Leinweber, remixed from the Renée French original Gopher" title="gopass Gopher by Vincent Leinweber, remixed from the Renée French original Gopher" />
-</p>
-
-# gopass
-
 [![Build Status](https://img.shields.io/github/workflow/status/gopasspw/gopass/Build%20gopass/master)](https://github.com/gopasspw/gopass/actions/workflows/build.yml?query=branch%3Amaster)
 [![Packaging status](https://repology.org/badge/tiny-repos/gopass.svg)](https://repology.org/project/gopass/versions)
 [![Go Report Card](https://goreportcard.com/badge/github.com/gopasspw/gopass)](https://goreportcard.com/report/github.com/gopasspw/gopass)
@@ -61,7 +53,7 @@ Please see [docs/setup.md](https://github.com/gopasspw/gopass/blob/master/docs/s
 If you have [Go](https://golang.org/) 1.16 (or greater) installed:
 
 ```bash
-go get github.com/gopasspw/gopass
+go get github.com/itsonlycode/gosecret
 ```
 
 WARNING: Please prefer releases, unless you want to contribute to the
@@ -75,23 +67,23 @@ Either initialize a new git repository or clone an existing one.
 ### New information store
 
 ```
-$ gopass setup
+$ gosecret setup
 
-Hint: `gopass setup` will use `gpg` encryption and `git` storage by default.
+Hint: `gosecret setup` will use `gpg` encryption and `git` storage by default.
 
-### Existing password store
+### Existing information store
 
 ```
-$ gopass clone git@gitlab.example.org:john/passwords.git
+$ gosecret clone git@gitlab.example.org:john/secret.git
 
-Your password store is ready to use! Have a look around: `gopass list`
+Your information store is ready to use! Have a look around: `gosecret list`
 ```
 
 ## Upgrade
 
 To use the self-updater run:
 ```bash
-gopass update
+gosecret update
 ```
 
 or to upgrade with Go installed, run:
@@ -126,5 +118,5 @@ gosecret is developed in the open. Here are some of the channels we use to commu
 We welcome any contributions.
 
 <!---
-Please see the [CONTRIBUTING.md](https://github.com/gopasspw/gopass/blob/master/CONTRIBUTING.md) file for instructions on how to submit changes.
+Please see the [CONTRIBUTING.md](https://github.com/itsonlycode/gosecret/blob/master/CONTRIBUTING.md) file for instructions on how to submit changes.
 --->
