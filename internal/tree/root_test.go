@@ -10,7 +10,7 @@ import (
 func TestRoot(t *testing.T) {
 	color.NoColor = true
 
-	r := New("gopass")
+	r := New("gosecret")
 	r.AddTemplate("foo")
 	r.AddFile("foo/bar/baz", "")
 	r.AddFile("foo/bar/zab", "")
@@ -18,7 +18,7 @@ func TestRoot(t *testing.T) {
 	r.AddFile("mnt/m1/foo", "")
 	r.AddFile("mnt/m1/foo/bar", "")
 	t.Logf("%+#v", r)
-	assert.Equal(t, `gopass
+	assert.Equal(t, `gosecret
 ├── foo/ (template)
 │   └── bar/
 │       ├── baz
@@ -43,7 +43,7 @@ func TestRoot(t *testing.T) {
 	}, r.ListFolders(INF))
 	f, err := r.FindFolder("mnt/m1")
 	assert.NoError(t, err)
-	assert.Equal(t, `gopass
+	assert.Equal(t, `gosecret
 └── foo/
     └── bar
 `, f.Format(INF))
@@ -52,7 +52,7 @@ func TestRoot(t *testing.T) {
 func TestMountShadow(t *testing.T) {
 	color.NoColor = true
 
-	r := New("gopass")
+	r := New("gosecret")
 	r.AddTemplate("foo")
 	r.AddFile("foo/bar/baz", "")
 	r.AddFile("foo/bar/zab", "")
@@ -60,7 +60,7 @@ func TestMountShadow(t *testing.T) {
 	r.AddFile("foo/zab", "")
 	r.AddFile("foo/baz", "")
 	t.Logf("%+#v", r)
-	assert.Equal(t, `gopass
+	assert.Equal(t, `gosecret
 └── foo (/tmp/m1)
     ├── baz
     └── zab

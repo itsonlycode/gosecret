@@ -5,9 +5,9 @@ import (
 	"path/filepath"
 	"testing"
 
-	_ "github.com/gopasspw/gopass/internal/backend/crypto"
-	_ "github.com/gopasspw/gopass/internal/backend/storage"
-	"github.com/gopasspw/gopass/internal/config"
+	_ "github.com/itsonlycode/gosecret/internal/backend/crypto"
+	_ "github.com/itsonlycode/gosecret/internal/backend/storage"
+	"github.com/itsonlycode/gosecret/internal/config"
 
 	"github.com/stretchr/testify/assert"
 )
@@ -17,7 +17,7 @@ func TestHomedir(t *testing.T) {
 }
 
 func TestNewConfig(t *testing.T) {
-	assert.NoError(t, os.Setenv("GOPASS_CONFIG", filepath.Join(os.TempDir(), ".gopass.yml")))
+	assert.NoError(t, os.Setenv("GOPASS_CONFIG", filepath.Join(os.TempDir(), ".gosecret.yml")))
 
 	cfg := config.New()
 	cs := cfg.String()
@@ -35,7 +35,7 @@ func TestNewConfig(t *testing.T) {
 }
 
 func TestSetConfigValue(t *testing.T) {
-	assert.NoError(t, os.Setenv("GOPASS_CONFIG", filepath.Join(os.TempDir(), ".gopass.yml")))
+	assert.NoError(t, os.Setenv("GOPASS_CONFIG", filepath.Join(os.TempDir(), ".gosecret.yml")))
 
 	cfg := config.New()
 	assert.NoError(t, cfg.SetConfigValue("autoclip", "true"))

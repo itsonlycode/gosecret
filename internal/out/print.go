@@ -7,8 +7,8 @@ import (
 	"os"
 
 	"github.com/fatih/color"
-	"github.com/gopasspw/gopass/pkg/ctxutil"
-	"github.com/gopasspw/gopass/pkg/debug"
+	"github.com/itsonlycode/gosecret/pkg/ctxutil"
+	"github.com/itsonlycode/gosecret/pkg/debug"
 )
 
 var (

@@ -12,7 +12,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/gopasspw/gopass/pkg/debug"
+	"github.com/itsonlycode/gosecret/pkg/debug"
 )
 
 var reCleanFilename = regexp.MustCompile(`[^\w\d@.-]`)

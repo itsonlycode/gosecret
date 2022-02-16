@@ -8,7 +8,7 @@ import (
 
 	"filippo.io/age"
 	"filippo.io/age/agessh"
-	"github.com/gopasspw/gopass/pkg/ctxutil"
+	"github.com/itsonlycode/gosecret/pkg/ctxutil"
 	"golang.org/x/crypto/ssh"
 )
 

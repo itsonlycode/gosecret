@@ -8,10 +8,10 @@ import (
 	"runtime"
 	"testing"
 
-	"github.com/gopasspw/gopass/internal/out"
-	"github.com/gopasspw/gopass/pkg/ctxutil"
-	"github.com/gopasspw/gopass/pkg/pwgen"
-	"github.com/gopasspw/gopass/tests/gptest"
+	"github.com/itsonlycode/gosecret/internal/out"
+	"github.com/itsonlycode/gosecret/pkg/ctxutil"
+	"github.com/itsonlycode/gosecret/pkg/pwgen"
+	"github.com/itsonlycode/gosecret/tests/gptest"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 )
@@ -37,7 +37,7 @@ func TestEnvLeafHappyPath(t *testing.T) {
 		stdout = os.Stdout
 	}()
 
-	// Command-line would be: "gopass env foo env", where "foo" is an existing
+	// Command-line would be: "gosecret env foo env", where "foo" is an existing
 	// secret with value "secret". We expect to see the key/value in the output
 	// of the /usr/bin/env utility in the form "BAZ=secret".
 	pw := pwgen.GeneratePassword(24, false)
@@ -59,7 +59,7 @@ func TestEnvSecretNotFound(t *testing.T) {
 	require.NoError(t, err)
 	require.NotNil(t, act)
 
-	// Command-line would be: "gopass env non-existing true".
+	// Command-line would be: "gosecret env non-existing true".
 	assert.EqualError(t, act.Env(gptest.CliCtx(ctx, t, "non-existing", "true")),
 		"Secret non-existing not found")
 }
@@ -82,7 +82,7 @@ func TestEnvProgramNotFound(t *testing.T) {
 		wanted += "$PATH"
 	}
 
-	// Command-line would be: "gopass env foo non-existing".
+	// Command-line would be: "gosecret env foo non-existing".
 	assert.EqualError(t, act.Env(gptest.CliCtx(ctx, t, "foo", "non-existing")),
 		wanted)
 }
@@ -99,7 +99,7 @@ func TestEnvProgramNotSpecified(t *testing.T) {
 	require.NoError(t, err)
 	require.NotNil(t, act)
 
-	// Command-line would be: "gopass env foo".
+	// Command-line would be: "gosecret env foo".
 	assert.EqualError(t, act.Env(gptest.CliCtx(ctx, t, "foo")),
 		"Missing subcommand to execute")
 }

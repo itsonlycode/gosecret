@@ -13,13 +13,13 @@ import (
 	"strings"
 	"time"
 
-	"github.com/gopasspw/gopass/internal/backend"
-	"github.com/gopasspw/gopass/internal/backend/storage/fs"
-	"github.com/gopasspw/gopass/internal/out"
-	"github.com/gopasspw/gopass/internal/store"
-	"github.com/gopasspw/gopass/pkg/ctxutil"
-	"github.com/gopasspw/gopass/pkg/debug"
-	"github.com/gopasspw/gopass/pkg/fsutil"
+	"github.com/itsonlycode/gosecret/internal/backend"
+	"github.com/itsonlycode/gosecret/internal/backend/storage/fs"
+	"github.com/itsonlycode/gosecret/internal/out"
+	"github.com/itsonlycode/gosecret/internal/store"
+	"github.com/itsonlycode/gosecret/pkg/ctxutil"
+	"github.com/itsonlycode/gosecret/pkg/debug"
+	"github.com/itsonlycode/gosecret/pkg/fsutil"
 
 	"github.com/blang/semver/v4"
 )

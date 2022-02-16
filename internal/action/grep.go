@@ -4,10 +4,10 @@ import (
 	"regexp"
 	"strings"
 
-	"github.com/gopasspw/gopass/internal/tree"
+	"github.com/itsonlycode/gosecret/internal/tree"
 
-	"github.com/gopasspw/gopass/internal/out"
-	"github.com/gopasspw/gopass/pkg/ctxutil"
+	"github.com/itsonlycode/gosecret/internal/out"
+	"github.com/itsonlycode/gosecret/pkg/ctxutil"
 
 	"github.com/fatih/color"
 	"github.com/urfave/cli/v2"

@@ -207,7 +207,7 @@ func TestDelete(t *testing.T) {
 
 func newTempDir(t *testing.T) (string, func()) {
 	t.Helper()
-	td, err := os.MkdirTemp("", "gopass-")
+	td, err := os.MkdirTemp("", "gosecret-")
 	if err != nil {
 		t.Error(err)
 	}

@@ -4,12 +4,12 @@ import (
 	"context"
 	"fmt"
 
-	"github.com/gopasspw/gopass/internal/backend"
-	"github.com/gopasspw/gopass/internal/out"
-	"github.com/gopasspw/gopass/internal/store"
-	"github.com/gopasspw/gopass/pkg/debug"
-	"github.com/gopasspw/gopass/pkg/gopass"
-	"github.com/gopasspw/gopass/pkg/gopass/secrets/secparse"
+	"github.com/itsonlycode/gosecret/internal/backend"
+	"github.com/itsonlycode/gosecret/internal/out"
+	"github.com/itsonlycode/gosecret/internal/store"
+	"github.com/itsonlycode/gosecret/pkg/debug"
+	"github.com/itsonlycode/gosecret/pkg/gosecret"
+	"github.com/itsonlycode/gosecret/pkg/gosecret/secrets/secparse"
 )
 
 // GitInit initializes the git storage
@@ -29,7 +29,7 @@ func (s *Store) ListRevisions(ctx context.Context, name string) ([]backend.Revis
 }
 
 // GetRevision will retrieve a single revision from the backend
-func (s *Store) GetRevision(ctx context.Context, name, revision string) (gopass.Secret, error) {
+func (s *Store) GetRevision(ctx context.Context, name, revision string) (gosecret.Secret, error) {
 	p := s.passfile(name)
 	ciphertext, err := s.storage.GetRevision(ctx, p, revision)
 	if err != nil {

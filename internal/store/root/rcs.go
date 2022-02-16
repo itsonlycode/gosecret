@@ -3,10 +3,10 @@ package root
 import (
 	"context"
 
-	"github.com/gopasspw/gopass/internal/backend"
-	"github.com/gopasspw/gopass/internal/out"
-	"github.com/gopasspw/gopass/pkg/ctxutil"
-	"github.com/gopasspw/gopass/pkg/gopass"
+	"github.com/itsonlycode/gosecret/internal/backend"
+	"github.com/itsonlycode/gosecret/internal/out"
+	"github.com/itsonlycode/gosecret/pkg/ctxutil"
+	"github.com/itsonlycode/gosecret/pkg/gosecret"
 )
 
 // RCSInit initializes the version control repo
@@ -54,7 +54,7 @@ func (r *Store) ListRevisions(ctx context.Context, name string) ([]backend.Revis
 }
 
 // GetRevision will try to retrieve the given revision from the sync backend
-func (r *Store) GetRevision(ctx context.Context, name, revision string) (context.Context, gopass.Secret, error) {
+func (r *Store) GetRevision(ctx context.Context, name, revision string) (context.Context, gosecret.Secret, error) {
 	store, name := r.getStore(name)
 	sec, err := store.GetRevision(ctx, name, revision)
 	return ctx, sec, err

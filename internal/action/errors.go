@@ -3,7 +3,7 @@ package action
 import (
 	"fmt"
 
-	"github.com/gopasspw/gopass/pkg/debug"
+	"github.com/itsonlycode/gosecret/pkg/debug"
 	"github.com/urfave/cli/v2"
 )
 
@@ -16,7 +16,7 @@ const (
 	ExitUsage
 	// ExitAborted is used if the user willingly aborted an action
 	ExitAborted
-	// ExitUnsupported is used if an operation is not supported by gopass
+	// ExitUnsupported is used if an operation is not supported by gosecret
 	ExitUnsupported
 	// ExitAlreadyInitialized is used if someone is trying to initialize
 	// an already initialized store

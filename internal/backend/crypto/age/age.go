@@ -15,10 +15,10 @@ import (
 	"filippo.io/age/agessh"
 	"github.com/blang/semver/v4"
 	"github.com/google/go-github/github"
-	"github.com/gopasspw/gopass/internal/cache"
-	"github.com/gopasspw/gopass/pkg/appdir"
-	"github.com/gopasspw/gopass/pkg/debug"
-	"github.com/gopasspw/gopass/pkg/termio"
+	"github.com/itsonlycode/gosecret/internal/cache"
+	"github.com/itsonlycode/gosecret/pkg/appdir"
+	"github.com/itsonlycode/gosecret/pkg/debug"
+	"github.com/itsonlycode/gosecret/pkg/termio"
 )
 
 const (

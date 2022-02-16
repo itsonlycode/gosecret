@@ -6,16 +6,16 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/gopasspw/gopass/internal/out"
-	"github.com/gopasspw/gopass/internal/queue"
-	"github.com/gopasspw/gopass/internal/store"
-	"github.com/gopasspw/gopass/pkg/ctxutil"
-	"github.com/gopasspw/gopass/pkg/debug"
-	"github.com/gopasspw/gopass/pkg/gopass"
+	"github.com/itsonlycode/gosecret/internal/out"
+	"github.com/itsonlycode/gosecret/internal/queue"
+	"github.com/itsonlycode/gosecret/internal/store"
+	"github.com/itsonlycode/gosecret/pkg/ctxutil"
+	"github.com/itsonlycode/gosecret/pkg/debug"
+	"github.com/itsonlycode/gosecret/pkg/gosecret"
 )
 
 // Set encodes and writes the cipertext of one entry to disk
-func (s *Store) Set(ctx context.Context, name string, sec gopass.Byter) error {
+func (s *Store) Set(ctx context.Context, name string, sec gosecret.Byter) error {
 	if strings.Contains(name, "//") {
 		return fmt.Errorf("invalid secret name: %s", name)
 	}
@@ -83,13 +83,13 @@ func (s *Store) gitCommitAndPush(ctx context.Context, name string) error {
 	if err := s.storage.Push(ctx, "", ""); err != nil {
 		if errors.Is(err, store.ErrGitNotInit) {
 			msg := "Warning: git is not initialized for this.storage. Ignoring auto-push option\n" +
-				"Run: gopass git init"
+				"Run: gosecret git init"
 			out.Errorf(ctx, msg)
 			return nil
 		}
 		if errors.Is(err, store.ErrGitNoRemote) {
 			msg := "Warning: git has no remote. Ignoring auto-push option\n" +
-				"Run: gopass git remote add origin ..."
+				"Run: gosecret git remote add origin ..."
 			debug.Log(msg)
 			return nil
 		}

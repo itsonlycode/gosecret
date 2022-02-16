@@ -4,8 +4,8 @@ import (
 	"context"
 	"fmt"
 
-	"github.com/gopasspw/gopass/internal/backend"
-	"github.com/gopasspw/gopass/pkg/debug"
+	"github.com/itsonlycode/gosecret/internal/backend"
+	"github.com/itsonlycode/gosecret/pkg/debug"
 )
 
 const (

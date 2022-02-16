@@ -7,15 +7,15 @@ import (
 	"path/filepath"
 	"testing"
 
-	"github.com/gopasspw/gopass/internal/out"
-	"github.com/gopasspw/gopass/pkg/ctxutil"
+	"github.com/itsonlycode/gosecret/internal/out"
+	"github.com/itsonlycode/gosecret/pkg/ctxutil"
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 )
 
 func TestGit(t *testing.T) {
-	td, err := os.MkdirTemp("", "gopass-")
+	td, err := os.MkdirTemp("", "gosecret-")
 	require.NoError(t, err)
 	defer func() {
 		_ = os.RemoveAll(td)

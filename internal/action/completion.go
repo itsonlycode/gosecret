@@ -6,12 +6,12 @@ import (
 	"runtime"
 	"strings"
 
-	"github.com/gopasspw/gopass/internal/tree"
+	"github.com/itsonlycode/gosecret/internal/tree"
 
-	fishcomp "github.com/gopasspw/gopass/internal/completion/fish"
-	zshcomp "github.com/gopasspw/gopass/internal/completion/zsh"
-	"github.com/gopasspw/gopass/internal/out"
-	"github.com/gopasspw/gopass/pkg/ctxutil"
+	fishcomp "github.com/itsonlycode/gosecret/internal/completion/fish"
+	zshcomp "github.com/itsonlycode/gosecret/internal/completion/zsh"
+	"github.com/itsonlycode/gosecret/internal/out"
+	"github.com/itsonlycode/gosecret/pkg/ctxutil"
 	"github.com/urfave/cli/v2"
 )
 
@@ -48,8 +48,8 @@ func (s *Action) Complete(c *cli.Context) {
 // CompletionOpenBSDKsh returns an OpenBSD ksh script used for auto completion
 func (s *Action) CompletionOpenBSDKsh(a *cli.App) error {
 	out := `
-PASS_LIST=$(gopass ls -f)
-set -A complete_gopass -- $PASS_LIST %s
+PASS_LIST=$(gosecret ls -f)
+set -A complete_gosecret -- $PASS_LIST %s
 `
 
 	if a == nil {
@@ -70,7 +70,7 @@ set -A complete_gopass -- $PASS_LIST %s
 
 // CompletionBash returns a bash script used for auto completion
 func (s *Action) CompletionBash(c *cli.Context) error {
-	out := `_gopass_bash_autocomplete() {
+	out := `_gosecret_bash_autocomplete() {
      local cur opts base
      COMPREPLY=()
      cur="${COMP_WORDS[COMP_CWORD]}"
@@ -81,9 +81,9 @@ func (s *Action) CompletionBash(c *cli.Context) error {
  }
 
 `
-	out += "complete -F _gopass_bash_autocomplete " + s.Name
+	out += "complete -F _gosecret_bash_autocomplete " + s.Name
 	if runtime.GOOS == "windows" {
-		out += "\ncomplete -F _gopass_bash_autocomplete " + s.Name + ".exe"
+		out += "\ncomplete -F _gosecret_bash_autocomplete " + s.Name + ".exe"
 	}
 	fmt.Fprintln(stdout, out)
 

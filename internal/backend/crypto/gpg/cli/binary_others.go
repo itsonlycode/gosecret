@@ -6,9 +6,9 @@ package cli
 import (
 	"os/exec"
 
-	"github.com/gopasspw/gopass/pkg/debug"
-	"github.com/gopasspw/gopass/pkg/fsutil"
-	"github.com/gopasspw/pinentry/gpgconf"
+	"github.com/itsonlycode/gosecret/pkg/debug"
+	"github.com/itsonlycode/gosecret/pkg/fsutil"
+	"github.com/itsonlycode/pinentry/gpgconf"
 )
 
 func detectBinary(name string) (string, error) {

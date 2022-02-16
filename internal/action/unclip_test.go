@@ -6,13 +6,13 @@ import (
 	"os"
 	"testing"
 
-	"github.com/gopasspw/gopass/internal/out"
-	"github.com/gopasspw/gopass/tests/gptest"
+	"github.com/itsonlycode/gosecret/internal/out"
+	"github.com/itsonlycode/gosecret/tests/gptest"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 
-	_ "github.com/gopasspw/gopass/internal/backend/crypto"
-	_ "github.com/gopasspw/gopass/internal/backend/storage"
+	_ "github.com/itsonlycode/gosecret/internal/backend/crypto"
+	_ "github.com/itsonlycode/gosecret/internal/backend/storage"
 )
 
 func TestUnclip(t *testing.T) {

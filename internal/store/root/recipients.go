@@ -6,10 +6,10 @@ import (
 	"sort"
 	"strings"
 
-	"github.com/gopasspw/gopass/internal/out"
-	"github.com/gopasspw/gopass/internal/store"
-	"github.com/gopasspw/gopass/internal/tree"
-	"github.com/gopasspw/gopass/pkg/debug"
+	"github.com/itsonlycode/gosecret/internal/out"
+	"github.com/itsonlycode/gosecret/internal/store"
+	"github.com/itsonlycode/gosecret/internal/tree"
+	"github.com/itsonlycode/gosecret/pkg/debug"
 
 	"github.com/fatih/color"
 )
@@ -50,7 +50,7 @@ func (r *Store) addRecipient(ctx context.Context, prefix string, root *tree.Root
 	// (which could then contain slashes).
 	key = strings.Replace(key, "/", "", -1)
 
-	return root.AddFile(prefix+key, "gopass/recipient")
+	return root.AddFile(prefix+key, "gosecret/recipient")
 }
 
 // ImportMissingPublicKeys import missing public keys in any substore
@@ -78,7 +78,7 @@ func (r *Store) SaveRecipients(ctx context.Context) error {
 
 // RecipientsTree returns a tree view of all stores' recipients
 func (r *Store) RecipientsTree(ctx context.Context, pretty bool) (*tree.Root, error) {
-	root := tree.New("gopass")
+	root := tree.New("gosecret")
 
 	for name, recps := range r.store.RecipientsTree(ctx) {
 		if name != "" {

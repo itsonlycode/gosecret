@@ -5,8 +5,8 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/gopasspw/gopass/internal/notify"
-	"github.com/gopasspw/gopass/internal/out"
+	"github.com/itsonlycode/gosecret/internal/notify"
+	"github.com/itsonlycode/gosecret/internal/out"
 
 	"github.com/atotto/clipboard"
 	"github.com/fatih/color"
@@ -14,7 +14,7 @@ import (
 
 var (
 	// Helpers can be overridden at compile time, e.g. go build \
-	// -ldflags=='-X github.com/gopasspw/gopass/pkg/clipboard.Helpers=termux-api'
+	// -ldflags=='-X github.com/itsonlycode/gosecret/pkg/clipboard.Helpers=termux-api'
 	Helpers = "xsel of xclip"
 	// ErrNotSupported is returned when the clipboard is not accessible
 	ErrNotSupported = fmt.Errorf("WARNING: No clipboard available. Install " + Helpers + " or use -f to print to console")
@@ -25,12 +25,12 @@ var (
 func CopyTo(ctx context.Context, name string, content []byte, timeout int) error {
 	if clipboard.Unsupported {
 		out.Printf(ctx, "%s", ErrNotSupported)
-		_ = notify.Notify(ctx, "gopass - clipboard", fmt.Sprintf("%s", ErrNotSupported))
+		_ = notify.Notify(ctx, "gosecret - clipboard", fmt.Sprintf("%s", ErrNotSupported))
 		return nil
 	}
 
 	if err := clipboard.WriteAll(string(content)); err != nil {
-		_ = notify.Notify(ctx, "gopass - clipboard", "failed to write to clipboard")
+		_ = notify.Notify(ctx, "gosecret - clipboard", "failed to write to clipboard")
 		return fmt.Errorf("failed to write to clipboard: %w", err)
 	}
 
@@ -38,12 +38,12 @@ func CopyTo(ctx context.Context, name string, content []byte, timeout int) error
 		timeout = 45
 	}
 	if err := clear(ctx, content, timeout); err != nil {
-		_ = notify.Notify(ctx, "gopass - clipboard", "failed to clear clipboard")
+		_ = notify.Notify(ctx, "gosecret - clipboard", "failed to clear clipboard")
 		return fmt.Errorf("failed to clear clipboard: %w", err)
 	}
 
 	out.Printf(ctx, "✔ Copied %s to clipboard. Will clear in %d seconds.", color.YellowString(name), timeout)
-	_ = notify.Notify(ctx, "gopass - clipboard", fmt.Sprintf("✔ Copied %s to clipboard. Will clear in %d seconds.", name, timeout))
+	_ = notify.Notify(ctx, "gosecret - clipboard", fmt.Sprintf("✔ Copied %s to clipboard. Will clear in %d seconds.", name, timeout))
 	return nil
 }
 

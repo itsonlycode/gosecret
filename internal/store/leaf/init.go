@@ -5,8 +5,8 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/gopasspw/gopass/internal/out"
-	"github.com/gopasspw/gopass/pkg/debug"
+	"github.com/itsonlycode/gosecret/internal/out"
+	"github.com/itsonlycode/gosecret/pkg/debug"
 )
 
 // IsInitialized returns true if the store is properly initialized
@@ -21,7 +21,7 @@ func (s *Store) IsInitialized(ctx context.Context) bool {
 func (s *Store) Init(ctx context.Context, path string, ids ...string) error {
 	if s.IsInitialized(ctx) {
 		return fmt.Errorf(`found already initialized store at %q.
-You can add secondary stores with gopass init --path <path to secondary store> --store <mount name>`, path)
+You can add secondary stores with gosecret init --path <path to secondary store> --store <mount name>`, path)
 	}
 
 	// initialize recipient list

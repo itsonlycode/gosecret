@@ -6,7 +6,7 @@ import (
 	"sort"
 
 	"github.com/blang/semver/v4"
-	"github.com/gopasspw/gopass/pkg/debug"
+	"github.com/itsonlycode/gosecret/pkg/debug"
 )
 
 var (

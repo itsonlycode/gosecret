@@ -8,8 +8,8 @@ import (
 	"os"
 	"runtime"
 
-	"github.com/gopasspw/gopass/internal/out"
-	"github.com/gopasspw/gopass/pkg/debug"
+	"github.com/itsonlycode/gosecret/internal/out"
+	"github.com/itsonlycode/gosecret/pkg/debug"
 
 	"github.com/blang/semver/v4"
 )
@@ -22,7 +22,7 @@ var (
 // Update will start th interactive update assistant
 func Update(ctx context.Context, currentVersion semver.Version) error {
 	if err := IsUpdateable(ctx); err != nil {
-		out.Errorf(ctx, "Your gopass binary is externally managed. Can not update: %q", err)
+		out.Errorf(ctx, "Your gosecret binary is externally managed. Can not update: %q", err)
 		return err
 	}
 
@@ -39,7 +39,7 @@ func Update(ctx context.Context, currentVersion semver.Version) error {
 	debug.Log("Current: %s - Latest: %s", currentVersion.String(), rel.Version.String())
 	// binary is newer or equal to the latest release -> nothing to do
 	if currentVersion.GTE(rel.Version) {
-		out.Printf(ctx, "gopass is up to date (%s)", currentVersion.String())
+		out.Printf(ctx, "gosecret is up to date (%s)", currentVersion.String())
 		if gfu := os.Getenv("GOPASS_FORCE_UPDATE"); gfu == "" {
 			return nil
 		}

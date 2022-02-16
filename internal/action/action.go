@@ -5,10 +5,10 @@ import (
 	"os"
 	"path/filepath"
 
-	"github.com/gopasspw/gopass/internal/config"
-	"github.com/gopasspw/gopass/internal/reminder"
-	"github.com/gopasspw/gopass/internal/store/root"
-	"github.com/gopasspw/gopass/pkg/debug"
+	"github.com/itsonlycode/gosecret/internal/config"
+	"github.com/itsonlycode/gosecret/internal/reminder"
+	"github.com/itsonlycode/gosecret/internal/store/root"
+	"github.com/itsonlycode/gosecret/pkg/debug"
 
 	"github.com/blang/semver/v4"
 )
@@ -18,7 +18,7 @@ var (
 	stdout io.Writer = os.Stdout
 )
 
-// Action knows everything to run gopass CLI actions
+// Action knows everything to run gosecret CLI actions
 type Action struct {
 	Name    string
 	Store   *root.Store
@@ -33,7 +33,7 @@ func New(cfg *config.Config, sv semver.Version) (*Action, error) {
 }
 
 func newAction(cfg *config.Config, sv semver.Version, remind bool) (*Action, error) {
-	name := "gopass"
+	name := "gosecret"
 	if len(os.Args) > 0 {
 		name = filepath.Base(os.Args[0])
 	}

@@ -5,13 +5,13 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/gopasspw/gopass/internal/audit"
-	"github.com/gopasspw/gopass/internal/editor"
-	"github.com/gopasspw/gopass/internal/out"
-	"github.com/gopasspw/gopass/internal/queue"
-	"github.com/gopasspw/gopass/pkg/ctxutil"
-	"github.com/gopasspw/gopass/pkg/debug"
-	"github.com/gopasspw/gopass/pkg/gopass/secrets"
+	"github.com/itsonlycode/gosecret/internal/audit"
+	"github.com/itsonlycode/gosecret/internal/editor"
+	"github.com/itsonlycode/gosecret/internal/out"
+	"github.com/itsonlycode/gosecret/internal/queue"
+	"github.com/itsonlycode/gosecret/pkg/ctxutil"
+	"github.com/itsonlycode/gosecret/pkg/debug"
+	"github.com/itsonlycode/gosecret/pkg/gosecret/secrets"
 	"github.com/urfave/cli/v2"
 )
 

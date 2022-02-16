@@ -6,9 +6,9 @@ import (
 	"sort"
 	"strings"
 
-	"github.com/gopasspw/gopass/internal/out"
-	"github.com/gopasspw/gopass/internal/store"
-	"github.com/gopasspw/gopass/internal/tree"
+	"github.com/itsonlycode/gosecret/internal/out"
+	"github.com/itsonlycode/gosecret/internal/store"
+	"github.com/itsonlycode/gosecret/internal/tree"
 )
 
 // List will return a flattened list of all tree entries
@@ -22,7 +22,7 @@ func (r *Store) List(ctx context.Context, maxDepth int) ([]string, error) {
 
 // Tree returns the tree representation of the entries
 func (r *Store) Tree(ctx context.Context) (*tree.Root, error) {
-	root := tree.New("gopass")
+	root := tree.New("gosecret")
 	addFileFunc := func(in ...string) {
 		for _, f := range in {
 			var ct string

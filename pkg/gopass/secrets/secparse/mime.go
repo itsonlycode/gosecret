@@ -8,7 +8,7 @@ import (
 	"net/textproto"
 	"strings"
 
-	"github.com/gopasspw/gopass/pkg/gopass/secrets"
+	"github.com/itsonlycode/gosecret/pkg/gosecret/secrets"
 )
 
 // parseLegacyMIME is a fallback parser for the transient MIME format

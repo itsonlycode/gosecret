@@ -6,14 +6,14 @@ import (
 	"os"
 
 	"github.com/fatih/color"
-	"github.com/gopasspw/gopass/internal/backend"
-	"github.com/gopasspw/gopass/internal/backend/crypto/gpg"
-	"github.com/gopasspw/gopass/internal/out"
-	"github.com/gopasspw/gopass/internal/store/root"
-	"github.com/gopasspw/gopass/pkg/ctxutil"
-	"github.com/gopasspw/gopass/pkg/debug"
-	"github.com/gopasspw/gopass/pkg/pwgen/xkcdgen"
-	"github.com/gopasspw/gopass/pkg/termio"
+	"github.com/itsonlycode/gosecret/internal/backend"
+	"github.com/itsonlycode/gosecret/internal/backend/crypto/gpg"
+	"github.com/itsonlycode/gosecret/internal/out"
+	"github.com/itsonlycode/gosecret/internal/store/root"
+	"github.com/itsonlycode/gosecret/pkg/ctxutil"
+	"github.com/itsonlycode/gosecret/pkg/debug"
+	"github.com/itsonlycode/gosecret/pkg/pwgen/xkcdgen"
+	"github.com/itsonlycode/gosecret/pkg/termio"
 	"github.com/urfave/cli/v2"
 )
 
@@ -27,7 +27,7 @@ func (s *Action) Setup(c *cli.Context) error {
 	ctx = initParseContext(ctx, c)
 
 	out.Printf(ctx, logo)
-	out.Printf(ctx, "🌟 Welcome to gopass!")
+	out.Printf(ctx, "🌟 Welcome to gosecret!")
 	out.Printf(ctx, "🌟 Initializing a new password store ...")
 
 	if name := termio.DetectName(c.Context, c); name != "" {
@@ -112,7 +112,7 @@ func (s *Action) initGenerateIdentity(ctx context.Context, crypto backend.Crypto
 
 	// Note: This issue shouldn't matter much past Linux Kernel 5.6,
 	// eventually we might want to remove this notice.
-	out.Printf(ctx, "⏳ This can take a long time. If you get impatient see https://github.com/gopasspw/gopass/blob/master/docs/entropy.md")
+	out.Printf(ctx, "⏳ This can take a long time. If you get impatient see https://github.com/itsonlycode/gosecret/blob/master/docs/entropy.md")
 	if want, err := termio.AskForBool(ctx, "Continue?", true); err != nil || !want {
 		return fmt.Errorf("user aborted: %w", err)
 	}

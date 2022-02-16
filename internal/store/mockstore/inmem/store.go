@@ -10,7 +10,7 @@ import (
 	"time"
 
 	"github.com/blang/semver/v4"
-	"github.com/gopasspw/gopass/internal/backend"
+	"github.com/itsonlycode/gosecret/internal/backend"
 )
 
 // InMem is a in-memory store

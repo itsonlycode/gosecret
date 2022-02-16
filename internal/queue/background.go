@@ -12,7 +12,7 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/gopasspw/gopass/pkg/debug"
+	"github.com/itsonlycode/gosecret/pkg/debug"
 )
 
 type contextKey int

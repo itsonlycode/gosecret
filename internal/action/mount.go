@@ -6,13 +6,13 @@ import (
 
 	"errors"
 
-	"github.com/gopasspw/gopass/internal/config"
-	"github.com/gopasspw/gopass/internal/out"
-	"github.com/gopasspw/gopass/internal/store"
-	"github.com/gopasspw/gopass/internal/store/root"
-	"github.com/gopasspw/gopass/internal/tree"
-	"github.com/gopasspw/gopass/pkg/ctxutil"
-	"github.com/gopasspw/gopass/pkg/debug"
+	"github.com/itsonlycode/gosecret/internal/config"
+	"github.com/itsonlycode/gosecret/internal/out"
+	"github.com/itsonlycode/gosecret/internal/store"
+	"github.com/itsonlycode/gosecret/internal/store/root"
+	"github.com/itsonlycode/gosecret/internal/tree"
+	"github.com/itsonlycode/gosecret/pkg/ctxutil"
+	"github.com/itsonlycode/gosecret/pkg/debug"
 
 	"github.com/fatih/color"
 	"github.com/urfave/cli/v2"
@@ -45,7 +45,7 @@ func (s *Action) MountsPrint(c *cli.Context) error {
 		return nil
 	}
 
-	root := tree.New(color.GreenString(fmt.Sprintf("gopass (%s)", s.Store.Path())))
+	root := tree.New(color.GreenString(fmt.Sprintf("gosecret (%s)", s.Store.Path())))
 	mounts := s.Store.Mounts()
 	mps := s.Store.MountPoints()
 	sort.Sort(store.ByPathLen(mps))
@@ -92,7 +92,7 @@ func (s *Action) MountAdd(c *cli.Context) error {
 			out.Printf(ctx, "Store is already mounted")
 			return nil
 		case root.NotInitializedError:
-			out.Printf(ctx, "Mount %s is not yet initialized. Please use 'gopass init --store %s' instead", e.Alias(), e.Alias())
+			out.Printf(ctx, "Mount %s is not yet initialized. Please use 'gosecret init --store %s' instead", e.Alias(), e.Alias())
 			return e
 		default:
 			return ExitError(ExitMount, err, "failed to add mount %q to %q: %s", alias, localPath, err)

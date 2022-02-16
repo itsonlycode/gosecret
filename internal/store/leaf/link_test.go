@@ -5,7 +5,7 @@ import (
 	"os"
 	"testing"
 
-	"github.com/gopasspw/gopass/pkg/gopass/secrets"
+	"github.com/itsonlycode/gosecret/pkg/gosecret/secrets"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 )
@@ -13,7 +13,7 @@ import (
 func TestLink(t *testing.T) {
 	ctx := context.Background()
 
-	tempdir, err := os.MkdirTemp("", "gopass-")
+	tempdir, err := os.MkdirTemp("", "gosecret-")
 	require.NoError(t, err)
 	defer func() {
 		_ = os.RemoveAll(tempdir)

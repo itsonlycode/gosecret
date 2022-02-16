@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"testing"
 
-	"github.com/gopasspw/gopass/pkg/gopass/secrets"
+	"github.com/itsonlycode/gosecret/pkg/gosecret/secrets"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 )

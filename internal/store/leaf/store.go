@@ -7,8 +7,8 @@ import (
 	"sort"
 	"strings"
 
-	"github.com/gopasspw/gopass/internal/backend"
-	"github.com/gopasspw/gopass/pkg/debug"
+	"github.com/itsonlycode/gosecret/internal/backend"
+	"github.com/itsonlycode/gosecret/pkg/debug"
 )
 
 // Store is password store

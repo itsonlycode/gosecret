@@ -6,9 +6,9 @@ import (
 	"os"
 	"testing"
 
-	"github.com/gopasspw/gopass/internal/out"
-	"github.com/gopasspw/gopass/pkg/ctxutil"
-	"github.com/gopasspw/gopass/tests/gptest"
+	"github.com/itsonlycode/gosecret/internal/out"
+	"github.com/itsonlycode/gosecret/pkg/ctxutil"
+	"github.com/itsonlycode/gosecret/tests/gptest"
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
@@ -82,7 +82,7 @@ func TestComplete(t *testing.T) {
 		defer buf.Reset()
 
 		assert.NoError(t, act.CompletionOpenBSDKsh(app))
-		assert.Contains(t, buf.String(), "complete_gopass")
+		assert.Contains(t, buf.String(), "complete_gosecret")
 		assert.Error(t, act.CompletionOpenBSDKsh(nil))
 	})
 }

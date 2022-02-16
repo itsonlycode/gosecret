@@ -9,18 +9,18 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/gopasspw/gopass/internal/tree"
-	"github.com/gopasspw/gopass/pkg/gopass/secrets"
+	"github.com/itsonlycode/gosecret/internal/tree"
+	"github.com/itsonlycode/gosecret/pkg/gosecret/secrets"
 
-	"github.com/gopasspw/gopass/internal/out"
-	"github.com/gopasspw/gopass/pkg/clipboard"
-	"github.com/gopasspw/gopass/pkg/ctxutil"
-	"github.com/gopasspw/gopass/pkg/debug"
-	"github.com/gopasspw/gopass/pkg/gopass"
-	"github.com/gopasspw/gopass/pkg/pwgen"
-	"github.com/gopasspw/gopass/pkg/pwgen/pwrules"
-	"github.com/gopasspw/gopass/pkg/pwgen/xkcdgen"
-	"github.com/gopasspw/gopass/pkg/termio"
+	"github.com/itsonlycode/gosecret/internal/out"
+	"github.com/itsonlycode/gosecret/pkg/clipboard"
+	"github.com/itsonlycode/gosecret/pkg/ctxutil"
+	"github.com/itsonlycode/gosecret/pkg/debug"
+	"github.com/itsonlycode/gosecret/pkg/gosecret"
+	"github.com/itsonlycode/gosecret/pkg/pwgen"
+	"github.com/itsonlycode/gosecret/pkg/pwgen/pwrules"
+	"github.com/itsonlycode/gosecret/pkg/pwgen/xkcdgen"
+	"github.com/itsonlycode/gosecret/pkg/termio"
 
 	"github.com/urfave/cli/v2"
 )
@@ -133,7 +133,7 @@ func (s *Action) generateCopyOrPrint(ctx context.Context, c *cli.Context, name, 
 	}
 
 	if !c.Bool("print") {
-		out.Printf(ctx, "Not printing secrets by default. Use 'gopass show %s' to display the password.", entry)
+		out.Printf(ctx, "Not printing secrets by default. Use 'gosecret show %s' to display the password.", entry)
 		return nil
 	}
 	if c.IsSet("print") && !c.Bool("print") && ctxutil.IsShowSafeContent(ctx) {
@@ -291,7 +291,7 @@ func (s *Action) generateSetPassword(ctx context.Context, name, key, password st
 	}
 
 	// generate a completely new secret
-	var sec gopass.Secret
+	var sec gosecret.Secret
 	sec = secrets.New()
 	sec.SetPassword(password)
 	if u := hasChangeURL(name); u != "" {
@@ -338,7 +338,7 @@ func (s *Action) generateReplaceExisting(ctx context.Context, name, key, passwor
 	return ctx, nil
 }
 
-func setMetadata(sec gopass.Secret, kvps map[string]string) {
+func setMetadata(sec gosecret.Secret, kvps map[string]string) {
 	for k, v := range kvps {
 		sec.Set(k, v)
 	}

@@ -23,7 +23,7 @@ func TestCompletion(t *testing.T) {
 	})
 
 	t.Run("bash completion", func(t *testing.T) {
-		bash := `_gopass_bash_autocomplete() {
+		bash := `_gosecret_bash_autocomplete() {
      local cur opts base
      COMPREPLY=()
      cur="${COMP_WORDS[COMP_CWORD]}"
@@ -33,7 +33,7 @@ func TestCompletion(t *testing.T) {
      return 0
  }
 
-complete -F _gopass_bash_autocomplete gopass`
+complete -F _gosecret_bash_autocomplete gosecret`
 
 		out, err := ts.run("completion bash")
 		assert.NoError(t, err)
@@ -43,7 +43,7 @@ complete -F _gopass_bash_autocomplete gopass`
 	t.Run("zsh completion", func(t *testing.T) {
 		out, err := ts.run("completion zsh")
 		assert.NoError(t, err)
-		assert.Contains(t, out, "compdef gopass")
+		assert.Contains(t, out, "compdef gosecret")
 	})
 
 	t.Run("fish completion", func(t *testing.T) {

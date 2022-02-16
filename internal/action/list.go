@@ -9,11 +9,11 @@ import (
 	"os/exec"
 	"strings"
 
-	"github.com/gopasspw/gopass/internal/store/leaf"
+	"github.com/itsonlycode/gosecret/internal/store/leaf"
 
 	"github.com/fatih/color"
-	"github.com/gopasspw/gopass/internal/tree"
-	"github.com/gopasspw/gopass/pkg/ctxutil"
+	"github.com/itsonlycode/gosecret/internal/tree"
+	"github.com/itsonlycode/gosecret/pkg/ctxutil"
 	"golang.org/x/term"
 
 	shellquote "github.com/kballard/go-shellquote"

@@ -4,14 +4,14 @@ import (
 	"os"
 	"path/filepath"
 
-	"github.com/gopasspw/gopass/internal/tree"
+	"github.com/itsonlycode/gosecret/internal/tree"
 
-	"github.com/gopasspw/gopass/internal/config"
-	"github.com/gopasspw/gopass/internal/out"
-	"github.com/gopasspw/gopass/internal/store/leaf"
-	"github.com/gopasspw/gopass/pkg/ctxutil"
-	"github.com/gopasspw/gopass/pkg/fsutil"
-	"github.com/gopasspw/gopass/pkg/termio"
+	"github.com/itsonlycode/gosecret/internal/config"
+	"github.com/itsonlycode/gosecret/internal/out"
+	"github.com/itsonlycode/gosecret/internal/store/leaf"
+	"github.com/itsonlycode/gosecret/pkg/ctxutil"
+	"github.com/itsonlycode/gosecret/pkg/fsutil"
+	"github.com/itsonlycode/gosecret/pkg/termio"
 	"github.com/urfave/cli/v2"
 )
 
@@ -32,10 +32,10 @@ func (s *Action) Fsck(c *cli.Context) error {
 	}
 
 	// clean up any previous config locations
-	oldCfg := filepath.Join(config.Homedir(), ".gopass.yml")
+	oldCfg := filepath.Join(config.Homedir(), ".gosecret.yml")
 	if fsutil.IsFile(oldCfg) {
 		if err := os.Remove(oldCfg); err != nil {
-			out.Errorf(ctx, "Failed to remove old gopass config %s: %s", oldCfg, err)
+			out.Errorf(ctx, "Failed to remove old gosecret config %s: %s", oldCfg, err)
 		}
 	}
 

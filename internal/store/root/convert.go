@@ -3,8 +3,8 @@ package root
 import (
 	"context"
 
-	"github.com/gopasspw/gopass/internal/backend"
-	"github.com/gopasspw/gopass/pkg/debug"
+	"github.com/itsonlycode/gosecret/internal/backend"
+	"github.com/itsonlycode/gosecret/pkg/debug"
 )
 
 // Convert will try to convert a given mount to a different set of

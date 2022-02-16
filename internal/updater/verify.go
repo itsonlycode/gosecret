@@ -7,7 +7,7 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/gopasspw/gopass/pkg/debug"
+	"github.com/itsonlycode/gosecret/pkg/debug"
 	//lint:ignore SA1019 we'll try to migrate away later
 	"golang.org/x/crypto/openpgp"
 )

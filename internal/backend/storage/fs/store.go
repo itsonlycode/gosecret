@@ -11,8 +11,8 @@ import (
 	"sort"
 	"strings"
 
-	"github.com/gopasspw/gopass/pkg/debug"
-	"github.com/gopasspw/gopass/pkg/fsutil"
+	"github.com/itsonlycode/gosecret/pkg/debug"
+	"github.com/itsonlycode/gosecret/pkg/fsutil"
 
 	"github.com/blang/semver/v4"
 )

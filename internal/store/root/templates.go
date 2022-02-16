@@ -6,10 +6,10 @@ import (
 	"path/filepath"
 	"sort"
 
-	"github.com/gopasspw/gopass/internal/out"
-	"github.com/gopasspw/gopass/internal/store"
-	"github.com/gopasspw/gopass/internal/tree"
-	"github.com/gopasspw/gopass/pkg/debug"
+	"github.com/itsonlycode/gosecret/internal/out"
+	"github.com/itsonlycode/gosecret/internal/store"
+	"github.com/itsonlycode/gosecret/internal/tree"
+	"github.com/itsonlycode/gosecret/pkg/debug"
 )
 
 // LookupTemplate will lookup and return a template
@@ -23,11 +23,11 @@ func (r *Store) LookupTemplate(ctx context.Context, name string) (string, []byte
 
 // TemplateTree returns a tree of all templates
 func (r *Store) TemplateTree(ctx context.Context) (*tree.Root, error) {
-	root := tree.New("gopass")
+	root := tree.New("gosecret")
 
 	for _, t := range r.store.ListTemplates(ctx, "") {
 		debug.Log("[<root>] Adding template %s", t)
-		if err := root.AddFile(t, "gopass/template"); err != nil {
+		if err := root.AddFile(t, "gosecret/template"); err != nil {
 			out.Errorf(ctx, "Failed to add file to tree: %s", err)
 		}
 	}
@@ -44,7 +44,7 @@ func (r *Store) TemplateTree(ctx context.Context) (*tree.Root, error) {
 		}
 		for _, t := range substore.ListTemplates(ctx, alias) {
 			debug.Log("[%s] Adding template %s", alias, t)
-			if err := root.AddFile(t, "gopass/template"); err != nil {
+			if err := root.AddFile(t, "gosecret/template"); err != nil {
 				out.Errorf(ctx, "Failed to add file to tree: %s", err)
 			}
 		}

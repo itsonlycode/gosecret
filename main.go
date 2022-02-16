@@ -1,8 +1,8 @@
-// Copyright 2021 The gopass Authors. All rights reserved.
+// Copyright 2021 The gosecret Authors. All rights reserved.
 // Use of this source code is governed by the MIT license,
 // that can be found in the LICENSE file.
 
-// Gopass implements the gopass command line tool.
+// Gopass implements the gosecret command line tool.
 package main
 
 import (
@@ -17,13 +17,13 @@ import (
 	"sort"
 	"time"
 
-	"github.com/gopasspw/gopass/internal/action/pwgen"
-	_ "github.com/gopasspw/gopass/internal/backend/crypto"
-	"github.com/gopasspw/gopass/internal/backend/crypto/gpg"
-	_ "github.com/gopasspw/gopass/internal/backend/storage"
-	"github.com/gopasspw/gopass/internal/queue"
-	"github.com/gopasspw/gopass/pkg/ctxutil"
-	"github.com/gopasspw/gopass/pkg/protect"
+	"github.com/itsonlycode/gosecret/internal/action/pwgen"
+	_ "github.com/itsonlycode/gosecret/internal/backend/crypto"
+	"github.com/itsonlycode/gosecret/internal/backend/crypto/gpg"
+	_ "github.com/itsonlycode/gosecret/internal/backend/storage"
+	"github.com/itsonlycode/gosecret/internal/queue"
+	"github.com/itsonlycode/gosecret/pkg/ctxutil"
+	"github.com/itsonlycode/gosecret/pkg/protect"
 
 	"github.com/blang/semver/v4"
 	"github.com/fatih/color"
@@ -31,19 +31,19 @@ import (
 	"github.com/mattn/go-isatty"
 	"github.com/urfave/cli/v2"
 
-	ap "github.com/gopasspw/gopass/internal/action"
-	"github.com/gopasspw/gopass/internal/config"
-	"github.com/gopasspw/gopass/internal/out"
-	"github.com/gopasspw/gopass/internal/store/leaf"
-	"github.com/gopasspw/gopass/pkg/termio"
+	ap "github.com/itsonlycode/gosecret/internal/action"
+	"github.com/itsonlycode/gosecret/internal/config"
+	"github.com/itsonlycode/gosecret/internal/out"
+	"github.com/itsonlycode/gosecret/internal/store/leaf"
+	"github.com/itsonlycode/gosecret/pkg/termio"
 )
 
 const (
-	name = "gopass"
+	name = "gosocial"
 )
 
 var (
-	// Version is the released version of gopass
+	// Version is the released version of gosecret
 	version string
 	// BuildTime is the time the binary was built
 	date string
@@ -120,7 +120,7 @@ func setupApp(ctx context.Context, sv semver.Version) (context.Context, *cli.App
 	// initialize action handlers
 	action, err := ap.New(cfg, sv)
 	if err != nil {
-		out.Errorf(ctx, "failed to initialize gopass: %s", err)
+		out.Errorf(ctx, "failed to initialize gosecret: %s", err)
 		os.Exit(ap.ExitUnknown)
 	}
 

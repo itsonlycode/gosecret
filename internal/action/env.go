@@ -7,10 +7,10 @@ import (
 	"path"
 	"strings"
 
-	"github.com/gopasspw/gopass/internal/tree"
+	"github.com/itsonlycode/gosecret/internal/tree"
 
-	"github.com/gopasspw/gopass/pkg/ctxutil"
-	"github.com/gopasspw/gopass/pkg/debug"
+	"github.com/itsonlycode/gosecret/pkg/ctxutil"
+	"github.com/itsonlycode/gosecret/pkg/debug"
 	"github.com/urfave/cli/v2"
 )
 

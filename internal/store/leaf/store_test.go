@@ -8,12 +8,12 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/gopasspw/gopass/internal/backend"
-	"github.com/gopasspw/gopass/pkg/gopass/secrets"
+	"github.com/itsonlycode/gosecret/internal/backend"
+	"github.com/itsonlycode/gosecret/pkg/gosecret/secrets"
 
-	_ "github.com/gopasspw/gopass/internal/backend/crypto"
-	"github.com/gopasspw/gopass/internal/backend/crypto/plain"
-	_ "github.com/gopasspw/gopass/internal/backend/storage"
+	_ "github.com/itsonlycode/gosecret/internal/backend/crypto"
+	"github.com/itsonlycode/gosecret/internal/backend/crypto/plain"
+	_ "github.com/itsonlycode/gosecret/internal/backend/storage"
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
@@ -26,7 +26,7 @@ func createSubStore(dir string) (*Store, error) {
 		return nil, err
 	}
 
-	if err := os.Setenv("GOPASS_CONFIG", filepath.Join(dir, ".gopass.yml")); err != nil {
+	if err := os.Setenv("GOPASS_CONFIG", filepath.Join(dir, ".gosecret.yml")); err != nil {
 		return nil, err
 	}
 	if err := os.Setenv("GOPASS_HOMEDIR", dir); err != nil {
@@ -88,7 +88,7 @@ func createStore(dir string, recipients, entries []string) ([]string, []string, 
 }
 
 func TestStore(t *testing.T) {
-	tempdir, err := os.MkdirTemp("", "gopass-")
+	tempdir, err := os.MkdirTemp("", "gosecret-")
 	require.NoError(t, err)
 	defer func() {
 		_ = os.RemoveAll(tempdir)
@@ -105,7 +105,7 @@ func TestStore(t *testing.T) {
 func TestIdFile(t *testing.T) {
 	ctx := context.Background()
 
-	tempdir, err := os.MkdirTemp("", "gopass-")
+	tempdir, err := os.MkdirTemp("", "gosecret-")
 	require.NoError(t, err)
 	defer func() {
 		_ = os.RemoveAll(tempdir)
@@ -140,7 +140,7 @@ func TestIdFile(t *testing.T) {
 func TestNew(t *testing.T) {
 	ctx := context.Background()
 
-	tempdir, err := os.MkdirTemp("", "gopass-")
+	tempdir, err := os.MkdirTemp("", "gosecret-")
 	require.NoError(t, err)
 	defer func() {
 		_ = os.RemoveAll(tempdir)

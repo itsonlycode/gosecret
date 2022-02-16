@@ -4,14 +4,14 @@ import (
 	"context"
 	"fmt"
 
-	"github.com/gopasspw/gopass/internal/tree"
+	"github.com/itsonlycode/gosecret/internal/tree"
 
-	_ "github.com/gopasspw/gopass/internal/backend/crypto"  // load crypto backends
-	_ "github.com/gopasspw/gopass/internal/backend/storage" // load storage backends
-	"github.com/gopasspw/gopass/internal/config"
-	"github.com/gopasspw/gopass/internal/queue"
-	"github.com/gopasspw/gopass/internal/store/root"
-	"github.com/gopasspw/gopass/pkg/gopass"
+	_ "github.com/itsonlycode/gosecret/internal/backend/crypto"  // load crypto backends
+	_ "github.com/itsonlycode/gosecret/internal/backend/storage" // load storage backends
+	"github.com/itsonlycode/gosecret/internal/config"
+	"github.com/itsonlycode/gosecret/internal/queue"
+	"github.com/itsonlycode/gosecret/internal/store/root"
+	"github.com/itsonlycode/gosecret/pkg/gosecret"
 )
 
 // Gopass is a secret store implementation
@@ -20,7 +20,7 @@ type Gopass struct {
 }
 
 // make sure that *Gopass implements Store
-var _ gopass.Store = &Gopass{}
+var _ gosecret.Store = &Gopass{}
 
 // New creates a new secret store
 // WARNING: This will need to change to accommodate for runtime configuration.
@@ -32,7 +32,7 @@ func New(ctx context.Context) (*Gopass, error) {
 		return nil, err
 	}
 	if !initialized {
-		return nil, fmt.Errorf("store not initialized. run gopass init first")
+		return nil, fmt.Errorf("store not initialized. run gosecret init first")
 	}
 	return &Gopass{
 		rs: store,
@@ -45,12 +45,12 @@ func (g *Gopass) List(ctx context.Context) ([]string, error) {
 }
 
 // Get returns a single, encrypted secret. It must be unwrapped before use.
-func (g *Gopass) Get(ctx context.Context, name, revision string) (gopass.Secret, error) {
+func (g *Gopass) Get(ctx context.Context, name, revision string) (gosecret.Secret, error) {
 	return g.rs.Get(ctx, name)
 }
 
 // Set adds a new revision to an existing secret or creates a new one.
-func (g *Gopass) Set(ctx context.Context, name string, sec gopass.Byter) error {
+func (g *Gopass) Set(ctx context.Context, name string, sec gosecret.Byter) error {
 	return g.rs.Set(ctx, name, sec)
 }
 
@@ -80,7 +80,7 @@ func (g *Gopass) Revisions(ctx context.Context, name string) ([]string, error) {
 }
 
 func (g *Gopass) String() string {
-	return "gopass"
+	return "gosecret"
 }
 
 // Close shuts down all background processes
@@ -88,7 +88,7 @@ func (g *Gopass) Close(ctx context.Context) error {
 	return queue.GetQueue(ctx).Wait(ctx)
 }
 
-// ConfigDir returns gopass' configuration directory
+// ConfigDir returns gosecret' configuration directory
 func ConfigDir() string {
 	return config.Directory()
 }

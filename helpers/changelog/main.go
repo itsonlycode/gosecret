@@ -1,4 +1,4 @@
-// Copyright 2021 The gopass Authors. All rights reserved.
+// Copyright 2021 The gosecret Authors. All rights reserved.
 // Use of this source code is governed by the MIT license,
 // that can be found in the LICENSE file.
 

@@ -9,9 +9,9 @@ import (
 	"strings"
 	"text/template"
 
-	"github.com/gopasspw/gopass/internal/backend/crypto/gpg"
-	"github.com/gopasspw/gopass/internal/backend/crypto/gpg/colons"
-	"github.com/gopasspw/gopass/pkg/debug"
+	"github.com/itsonlycode/gosecret/internal/backend/crypto/gpg"
+	"github.com/itsonlycode/gosecret/internal/backend/crypto/gpg/colons"
+	"github.com/itsonlycode/gosecret/pkg/debug"
 
 	//lint:ignore SA1019 we'll try to migrate away later
 	"golang.org/x/crypto/openpgp"

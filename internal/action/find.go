@@ -6,12 +6,12 @@ import (
 	"sort"
 	"strings"
 
-	"github.com/gopasspw/gopass/internal/tree"
+	"github.com/itsonlycode/gosecret/internal/tree"
 
-	"github.com/gopasspw/gopass/internal/cui"
-	"github.com/gopasspw/gopass/internal/out"
-	"github.com/gopasspw/gopass/pkg/ctxutil"
-	"github.com/gopasspw/gopass/pkg/debug"
+	"github.com/itsonlycode/gosecret/internal/cui"
+	"github.com/itsonlycode/gosecret/internal/out"
+	"github.com/itsonlycode/gosecret/pkg/ctxutil"
+	"github.com/itsonlycode/gosecret/pkg/debug"
 
 	"github.com/schollz/closestmatch"
 	"github.com/urfave/cli/v2"
@@ -82,7 +82,7 @@ func (s *Action) find(ctx context.Context, c *cli.Context, needle string, cb sho
 	}
 
 	// do not invoke wizard if not printing to terminal or if
-	// gopass find/search was invoked directly (for scripts)
+	// gosecret find/search was invoked directly (for scripts)
 	if !ctxutil.IsTerminal(ctx) || (c != nil && c.Command.Name == "find") {
 		for _, value := range choices {
 			out.Printf(ctx, value)

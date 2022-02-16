@@ -1,16 +1,16 @@
 package secparse
 
 import (
-	"github.com/gopasspw/gopass/internal/out"
-	"github.com/gopasspw/gopass/pkg/debug"
-	"github.com/gopasspw/gopass/pkg/gopass"
-	"github.com/gopasspw/gopass/pkg/gopass/secrets"
+	"github.com/itsonlycode/gosecret/internal/out"
+	"github.com/itsonlycode/gosecret/pkg/debug"
+	"github.com/itsonlycode/gosecret/pkg/gosecret"
+	"github.com/itsonlycode/gosecret/pkg/gosecret/secrets"
 )
 
 // Parse tries to parse a secret. It will start with the most specific
 // secrets type.
-func Parse(in []byte) (gopass.Secret, error) {
-	var s gopass.Secret
+func Parse(in []byte) (gosecret.Secret, error) {
+	var s gosecret.Secret
 	var err error
 	s, err = parseLegacyMIME(in)
 	if err == nil {

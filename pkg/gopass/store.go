@@ -1,4 +1,4 @@
-package gopass
+package gosecret
 
 import (
 	"context"

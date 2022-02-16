@@ -5,7 +5,7 @@ import (
 	"sort"
 	"testing"
 
-	"github.com/gopasspw/gopass/pkg/pwgen/pwrules"
+	"github.com/itsonlycode/gosecret/pkg/pwgen/pwrules"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 )

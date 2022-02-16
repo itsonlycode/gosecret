@@ -16,7 +16,7 @@ import (
 func Example() {
 	ctx := context.Background()
 
-	tempfile, err := New(ctx, "gopass-secure-")
+	tempfile, err := New(ctx, "gosecret-secure-")
 	if err != nil {
 		panic(err)
 	}
@@ -39,7 +39,7 @@ func Example() {
 }
 
 func TestTempdirBase(t *testing.T) {
-	tempdir, err := os.MkdirTemp(tempdirBase(), "gopass-")
+	tempdir, err := os.MkdirTemp(tempdirBase(), "gosecret-")
 	assert.NoError(t, err)
 	defer func() {
 		_ = os.RemoveAll(tempdir)

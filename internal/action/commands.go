@@ -3,7 +3,7 @@ package action
 import (
 	"fmt"
 
-	"github.com/gopasspw/gopass/internal/backend"
+	"github.com/itsonlycode/gosecret/internal/backend"
 	"github.com/urfave/cli/v2"
 )
 
@@ -119,7 +119,7 @@ func (s *Action) GetCommands() []*cli.Command {
 				"" +
 				"Needs at least one argument (git URL) to clone from. " +
 				"Accepts a second argument (mount location) to clone and mount a sub-store, e.g. " +
-				"'gopass clone git@example.com/store.git foo/bar'",
+				"'gosecret clone git@example.com/store.git foo/bar'",
 			Action: s.Clone,
 			Flags: []cli.Flag{
 				&cli.StringFlag{
@@ -331,7 +331,7 @@ func (s *Action) GetCommands() []*cli.Command {
 				"encoded and encrypted version in the store or it decrypts and decodes " +
 				"a secret and writes the result to a file. Either source or destination " +
 				"must be a file and the other one a secret. If you want the source to " +
-				"be securely removed after copying, use 'gopass binary move'",
+				"be securely removed after copying, use 'gosecret binary move'",
 			Before:       s.IsInitialized,
 			Action:       s.BinaryCopy,
 			BashComplete: s.Complete,
@@ -348,7 +348,7 @@ func (s *Action) GetCommands() []*cli.Command {
 				"must be a file and the other one a secret. The source will be wiped " +
 				"from disk or from the store after it has been copied successfully " +
 				"and validated. If you don't want the source to be removed use " +
-				"'gopass binary copy'",
+				"'gosecret binary copy'",
 			Before:       s.IsInitialized,
 			Action:       s.BinaryMove,
 			BashComplete: s.Complete,
@@ -420,7 +420,7 @@ func (s *Action) GetCommands() []*cli.Command {
 			Description: "" +
 				"If the password store is a git repository, execute a git command " +
 				"specified by git-command-args." +
-				"WARNING: Deprecated. Please use gopass sync.",
+				"WARNING: Deprecated. Please use gosecret sync.",
 			Hidden: true,
 			Subcommands: []*cli.Command{
 				{
@@ -683,7 +683,7 @@ func (s *Action) GetCommands() []*cli.Command {
 			Description: "" +
 				"This command implements a merge workflow to help deduplicate " +
 				"secrets. It requires exactly one destination (may already exist) " +
-				"and at least one source (must exist, can be multiple). gopass will " +
+				"and at least one source (must exist, can be multiple). gosecret will " +
 				"then merge all entries into one, drop into an editor, save the result " +
 				"and remove all merged entries.",
 			Before:       s.IsInitialized,
@@ -850,7 +850,7 @@ func (s *Action) GetCommands() []*cli.Command {
 			Name:  "setup",
 			Usage: "Initialize a new password store",
 			Description: "" +
-				"This command is automatically invoked if gopass is started without any " +
+				"This command is automatically invoked if gosecret is started without any " +
 				"existing password store. This command exists so users can be provided with " +
 				"simple one-command setup instructions.",
 			Action: s.Setup,
@@ -985,7 +985,7 @@ func (s *Action) GetCommands() []*cli.Command {
 			Name:  "update",
 			Usage: "Check for updates",
 			Description: "" +
-				"This command checks for gopass updates at GitHub and automatically " +
+				"This command checks for gosecret updates at GitHub and automatically " +
 				"downloads and installs any missing update.",
 			Action: s.Update,
 		},

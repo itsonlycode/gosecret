@@ -4,8 +4,8 @@ import (
 	"context"
 	"os"
 
-	"github.com/gopasspw/gopass/internal/out"
-	"github.com/gopasspw/gopass/pkg/ctxutil"
+	"github.com/itsonlycode/gosecret/internal/out"
+	"github.com/itsonlycode/gosecret/pkg/ctxutil"
 )
 
 func (s *Action) printReminder(ctx context.Context) {
@@ -23,17 +23,17 @@ func (s *Action) printReminder(ctx context.Context) {
 	// So we intentionally return after printing one, leaving the others
 	// for the following days.
 	if s.rem.Overdue("update") {
-		out.Notice(ctx, "You haven't checked for updates in a while. Run 'gopass version' or 'gopass update' to check.")
+		out.Notice(ctx, "You haven't checked for updates in a while. Run 'gosecret version' or 'gosecret update' to check.")
 		return
 	}
 
 	if s.rem.Overdue("fsck") {
-		out.Notice(ctx, "You haven't run 'gopass fsck' in a while.")
+		out.Notice(ctx, "You haven't run 'gosecret fsck' in a while.")
 		return
 	}
 
 	if s.rem.Overdue("audit") {
-		out.Notice(ctx, "You haven't run 'gopass audit' in a while.")
+		out.Notice(ctx, "You haven't run 'gosecret audit' in a while.")
 		return
 	}
 }

@@ -4,13 +4,13 @@ import (
 	"context"
 	"fmt"
 
-	"github.com/gopasspw/gopass/internal/tree"
+	"github.com/itsonlycode/gosecret/internal/tree"
 
-	"github.com/gopasspw/gopass/internal/cui"
-	"github.com/gopasspw/gopass/internal/out"
-	"github.com/gopasspw/gopass/pkg/ctxutil"
-	"github.com/gopasspw/gopass/pkg/debug"
-	"github.com/gopasspw/gopass/pkg/termio"
+	"github.com/itsonlycode/gosecret/internal/cui"
+	"github.com/itsonlycode/gosecret/internal/out"
+	"github.com/itsonlycode/gosecret/pkg/ctxutil"
+	"github.com/itsonlycode/gosecret/pkg/debug"
+	"github.com/itsonlycode/gosecret/pkg/termio"
 
 	"github.com/urfave/cli/v2"
 )
@@ -37,7 +37,7 @@ credentials.
 // RecipientsPrint prints all recipients per store
 func (s *Action) RecipientsPrint(c *cli.Context) error {
 	ctx := ctxutil.WithGlobalFlags(c)
-	out.Printf(ctx, "Hint: run 'gopass sync' to import any missing public keys")
+	out.Printf(ctx, "Hint: run 'gosecret sync' to import any missing public keys")
 
 	t, err := s.Store.RecipientsTree(ctx, true)
 	if err != nil {
@@ -127,7 +127,7 @@ func (s *Action) RecipientsAdd(c *cli.Context) error {
 	}
 
 	out.Printf(ctx, "\nAdded %d recipients", added)
-	out.Printf(ctx, "You need to run 'gopass sync' to push these changes")
+	out.Printf(ctx, "You need to run 'gosecret sync' to push these changes")
 	return nil
 }
 
@@ -198,7 +198,7 @@ func (s *Action) RecipientsRemove(c *cli.Context) error {
 	}
 
 	out.Printf(ctx, "\nRemoved %d recipients", removed)
-	out.Printf(ctx, "You need to run 'gopass sync' to push these changes")
+	out.Printf(ctx, "You need to run 'gosecret sync' to push these changes")
 	return nil
 }
 

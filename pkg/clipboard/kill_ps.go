@@ -7,7 +7,7 @@ import (
 	ps "github.com/mitchellh/go-ps"
 )
 
-// killPrecedessors will kill any previous "gopass unclip" invocations to avoid
+// killPrecedessors will kill any previous "gosecret unclip" invocations to avoid
 // erasing the clipboard prematurely in case the the same content is copied to
 // the clipboard repeatedly
 func killPrecedessors() error {

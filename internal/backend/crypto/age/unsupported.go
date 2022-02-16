@@ -6,7 +6,7 @@ import (
 	"sort"
 	"strings"
 
-	"github.com/gopasspw/gopass/pkg/debug"
+	"github.com/itsonlycode/gosecret/pkg/debug"
 )
 
 // FindIdentities returns all usable identities (SSH and native)

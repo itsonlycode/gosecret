@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/gopasspw/gopass/internal/store"
+	"github.com/itsonlycode/gosecret/internal/store"
 	"github.com/urfave/cli/v2"
 )
 

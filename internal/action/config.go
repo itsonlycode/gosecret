@@ -5,13 +5,13 @@ import (
 	"fmt"
 	"sort"
 
-	"github.com/gopasspw/gopass/internal/out"
-	"github.com/gopasspw/gopass/pkg/ctxutil"
+	"github.com/itsonlycode/gosecret/internal/out"
+	"github.com/itsonlycode/gosecret/pkg/ctxutil"
 
 	"github.com/urfave/cli/v2"
 )
 
-// Config handles changes to the gopass configuration
+// Config handles changes to the gosecret configuration
 func (s *Action) Config(c *cli.Context) error {
 	ctx := ctxutil.WithGlobalFlags(c)
 	if c.Args().Len() < 1 {

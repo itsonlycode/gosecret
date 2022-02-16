@@ -1,9 +1,9 @@
-// Copyright 2021 The gopass Authors. All rights reserved.
+// Copyright 2021 The gosecret Authors. All rights reserved.
 // Use of this source code is governed by the MIT license,
 // that can be found in the LICENSE file.
 
-// Release is the first part of the gopass release automation. It's supposed
-// to be run by a member of the gopass team. It will ensure that the repository
+// Release is the first part of the gosecret release automation. It's supposed
+// to be run by a member of the gosecret team. It will ensure that the repository
 // is in a clean state and make it trivial to trigger a new release.
 // You can run it without any parameters and as long as you pay close attention
 // to the output it will be a breeze.
@@ -66,7 +66,7 @@ const logo = `
 func main() {
 	fmt.Println(logo)
 	fmt.Println()
-	fmt.Println("🌟 Preparing a new gopass release.")
+	fmt.Println("🌟 Preparing a new gosecret release.")
 	fmt.Println("☝  Checking pre-conditions ...")
 	// - check that workdir is clean
 	if !isGitClean() {
@@ -146,10 +146,10 @@ func main() {
 	fmt.Println("🏁 Preparation finished")
 	time.Sleep(sleep)
 
-	fmt.Printf("⚠ Prepared release of gopass %s.\n", nextVer.String())
+	fmt.Printf("⚠ Prepared release of gosecret %s.\n", nextVer.String())
 	time.Sleep(sleep)
 
-	fmt.Printf("⚠ Run 'git push <remote> release/v%s' to push this branch and open a PR against gopasspw/gopass master.\n", nextVer.String())
+	fmt.Printf("⚠ Run 'git push <remote> release/v%s' to push this branch and open a PR against gosecretpw/gosecret master.\n", nextVer.String())
 	time.Sleep(sleep)
 
 	fmt.Printf("⚠ Get the PR merged and run 'git tag -s v%s && git push origin v%s' to kick off the release process.\n", nextVer.String(), nextVer.String())
@@ -248,7 +248,7 @@ func gitCoRel(v semver.Version) error {
 }
 
 func gitCommit(v semver.Version) error {
-	cmd := exec.Command("git", "add", "CHANGELOG.md", "VERSION", "version.go", "gopass.1", "*.completion")
+	cmd := exec.Command("git", "add", "CHANGELOG.md", "VERSION", "version.go", "gosecret.1", "*.completion")
 	cmd.Stderr = os.Stderr
 	if err := cmd.Run(); err != nil {
 		return err

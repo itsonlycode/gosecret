@@ -25,7 +25,7 @@ func TestCleanFilename(t *testing.T) {
 }
 
 func TestCleanPath(t *testing.T) {
-	tempdir, err := os.MkdirTemp("", "gopass-")
+	tempdir, err := os.MkdirTemp("", "gosecret-")
 	require.NoError(t, err)
 	defer func() {
 		_ = os.RemoveAll(tempdir)
@@ -58,7 +58,7 @@ func TestCleanPath(t *testing.T) {
 }
 
 func TestIsDir(t *testing.T) {
-	tempdir, err := os.MkdirTemp("", "gopass-")
+	tempdir, err := os.MkdirTemp("", "gosecret-")
 	require.NoError(t, err)
 	defer func() {
 		_ = os.RemoveAll(tempdir)
@@ -72,7 +72,7 @@ func TestIsDir(t *testing.T) {
 }
 
 func TestIsFile(t *testing.T) {
-	tempdir, err := os.MkdirTemp("", "gopass-")
+	tempdir, err := os.MkdirTemp("", "gosecret-")
 	require.NoError(t, err)
 	defer func() {
 		_ = os.RemoveAll(tempdir)
@@ -85,7 +85,7 @@ func TestIsFile(t *testing.T) {
 }
 
 func TestShred(t *testing.T) {
-	tempdir, err := os.MkdirTemp("", "gopass-")
+	tempdir, err := os.MkdirTemp("", "gosecret-")
 	require.NoError(t, err)
 	defer func() {
 		_ = os.RemoveAll(tempdir)
@@ -120,7 +120,7 @@ func TestShred(t *testing.T) {
 }
 
 func TestIsEmptyDir(t *testing.T) {
-	tempdir, err := os.MkdirTemp("", "gopass-")
+	tempdir, err := os.MkdirTemp("", "gosecret-")
 	require.NoError(t, err)
 	defer func() {
 		_ = os.RemoveAll(tempdir)

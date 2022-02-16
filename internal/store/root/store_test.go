@@ -6,14 +6,14 @@ import (
 	"sort"
 	"testing"
 
-	"github.com/gopasspw/gopass/internal/tree"
+	"github.com/itsonlycode/gosecret/internal/tree"
 
-	"github.com/gopasspw/gopass/internal/backend"
-	"github.com/gopasspw/gopass/internal/config"
-	"github.com/gopasspw/gopass/tests/gptest"
+	"github.com/itsonlycode/gosecret/internal/backend"
+	"github.com/itsonlycode/gosecret/internal/config"
+	"github.com/itsonlycode/gosecret/tests/gptest"
 
-	_ "github.com/gopasspw/gopass/internal/backend/crypto"
-	_ "github.com/gopasspw/gopass/internal/backend/storage"
+	_ "github.com/itsonlycode/gosecret/internal/backend/crypto"
+	_ "github.com/itsonlycode/gosecret/internal/backend/storage"
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"

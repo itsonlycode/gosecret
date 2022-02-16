@@ -4,10 +4,10 @@ import (
 	"context"
 	"testing"
 
-	"github.com/gopasspw/gopass/internal/backend"
-	_ "github.com/gopasspw/gopass/internal/backend/crypto"
-	"github.com/gopasspw/gopass/internal/backend/crypto/plain"
-	_ "github.com/gopasspw/gopass/internal/backend/storage"
+	"github.com/itsonlycode/gosecret/internal/backend"
+	_ "github.com/itsonlycode/gosecret/internal/backend/crypto"
+	"github.com/itsonlycode/gosecret/internal/backend/crypto/plain"
+	_ "github.com/itsonlycode/gosecret/internal/backend/storage"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 )

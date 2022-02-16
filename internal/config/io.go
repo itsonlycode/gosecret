@@ -6,8 +6,8 @@ import (
 	"path/filepath"
 	"sort"
 
-	"github.com/gopasspw/gopass/pkg/debug"
-	"github.com/gopasspw/gopass/pkg/fsutil"
+	"github.com/itsonlycode/gosecret/pkg/debug"
+	"github.com/itsonlycode/gosecret/pkg/fsutil"
 
 	"gopkg.in/yaml.v3"
 )
@@ -163,11 +163,11 @@ func decode(buf []byte, relaxed bool) (*Config, error) {
 		return conf, nil
 	}
 	// We try to provide a seamless config upgrade path for users of our
-	// released versions. But some users build gopass from the master branch
+	// released versions. But some users build gosecret from the master branch
 	// and these might run into issues when we remove config options.
 	// Since our config parser is pedantic (it has to) we fail parsing on
 	// unknown config options. If we remove one and the user rebuilds it's
-	// gopass binary without changing the config, it will fail to parse the
+	// gosecret binary without changing the config, it will fail to parse the
 	// current config and the legacy configs will likely fail as well.
 	// But if we always display the warning users with configs from previous
 	// releases will always see the warning. So instead we only display the

@@ -7,12 +7,12 @@ import (
 	"io"
 	"strings"
 
-	"github.com/gopasspw/gopass/pkg/debug"
-	"github.com/gopasspw/gopass/pkg/gopass"
+	"github.com/itsonlycode/gosecret/pkg/debug"
+	"github.com/itsonlycode/gosecret/pkg/gosecret"
 )
 
 // make sure that Plain implements Secret
-var _ gopass.Secret = &Plain{}
+var _ gosecret.Secret = &Plain{}
 
 // Plain is a fallback secret type that is used if none of the other secret
 // parsers accept the input. This secret only contains a byte slice of the

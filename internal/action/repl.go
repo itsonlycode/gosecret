@@ -5,11 +5,11 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/gopasspw/gopass/internal/tree"
+	"github.com/itsonlycode/gosecret/internal/tree"
 
 	"github.com/chzyer/readline"
-	"github.com/gopasspw/gopass/internal/out"
-	"github.com/gopasspw/gopass/pkg/debug"
+	"github.com/itsonlycode/gosecret/internal/out"
+	"github.com/itsonlycode/gosecret/pkg/debug"
 	shellquote "github.com/kballard/go-shellquote"
 	"github.com/urfave/cli/v2"
 )
@@ -116,10 +116,10 @@ func (s *Action) REPL(c *cli.Context) error {
 	}
 
 	out.Printf(c.Context, logo)
-	out.Printf(c.Context, "🌟 Welcome to gopass!")
+	out.Printf(c.Context, "🌟 Welcome to gosecret!")
 	out.Printf(c.Context, "⚠ This is the built-in shell. Type 'help' for a list of commands.")
 
-	rl, err := readline.New("gopass> ")
+	rl, err := readline.New("gosecret> ")
 	if err != nil {
 		return err
 	}
@@ -163,7 +163,7 @@ READ:
 		// TODO: this means the context will grow with every loop. Eventually
 		// this might lead to memory issues so we should see if we can optimize it.
 		c.Context = s.cfg.WithContext(c.Context)
-		if err := c.App.RunContext(c.Context, append([]string{"gopass"}, args...)); err != nil {
+		if err := c.App.RunContext(c.Context, append([]string{"gosecret"}, args...)); err != nil {
 			continue
 		}
 	}

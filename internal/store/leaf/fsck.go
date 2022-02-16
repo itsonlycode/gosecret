@@ -7,12 +7,12 @@ import (
 	"sort"
 	"strings"
 
-	"github.com/gopasspw/gopass/internal/backend"
-	"github.com/gopasspw/gopass/internal/out"
-	"github.com/gopasspw/gopass/internal/store"
-	"github.com/gopasspw/gopass/pkg/ctxutil"
-	"github.com/gopasspw/gopass/pkg/debug"
-	"github.com/gopasspw/gopass/pkg/gopass"
+	"github.com/itsonlycode/gosecret/internal/backend"
+	"github.com/itsonlycode/gosecret/internal/out"
+	"github.com/itsonlycode/gosecret/internal/store"
+	"github.com/itsonlycode/gosecret/pkg/ctxutil"
+	"github.com/itsonlycode/gosecret/pkg/debug"
+	"github.com/itsonlycode/gosecret/pkg/gosecret"
 )
 
 // Fsck checks all entries matching the given prefix
@@ -65,7 +65,7 @@ func (s *Store) Fsck(ctx context.Context, path string) error {
 }
 
 type convertedSecret interface {
-	gopass.Secret
+	gosecret.Secret
 	FromMime() bool
 }
 

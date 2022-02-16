@@ -6,12 +6,12 @@ package appdir
 import (
 	"os"
 
-	"github.com/gopasspw/gopass/pkg/debug"
+	"github.com/itsonlycode/gosecret/pkg/debug"
 )
 
 var (
 	// Name is used in the final path of the generated path
-	Name = "gopass"
+	Name = "gosecret"
 )
 
 // UserHome returns the users home dir

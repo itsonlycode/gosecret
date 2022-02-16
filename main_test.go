@@ -12,13 +12,13 @@ import (
 	"github.com/atotto/clipboard"
 	"github.com/blang/semver/v4"
 	"github.com/fatih/color"
-	"github.com/gopasspw/gopass/internal/action"
-	"github.com/gopasspw/gopass/internal/backend"
-	"github.com/gopasspw/gopass/internal/backend/crypto/gpg"
-	"github.com/gopasspw/gopass/internal/config"
-	"github.com/gopasspw/gopass/internal/out"
-	"github.com/gopasspw/gopass/pkg/ctxutil"
-	"github.com/gopasspw/gopass/tests/gptest"
+	"github.com/itsonlycode/gosecret/internal/action"
+	"github.com/itsonlycode/gosecret/internal/backend"
+	"github.com/itsonlycode/gosecret/internal/backend/crypto/gpg"
+	"github.com/itsonlycode/gosecret/internal/config"
+	"github.com/itsonlycode/gosecret/internal/out"
+	"github.com/itsonlycode/gosecret/pkg/ctxutil"
+	"github.com/itsonlycode/gosecret/tests/gptest"
 	"github.com/stretchr/testify/assert"
 	"github.com/urfave/cli/v2"
 )
@@ -29,7 +29,7 @@ func TestVersionPrinter(t *testing.T) {
 	buf := &bytes.Buffer{}
 	vp := makeVersionPrinter(buf, semver.Version{Major: 1})
 	vp(nil)
-	assert.Equal(t, fmt.Sprintf("gopass 1.0.0 %s %s %s\n", runtime.Version(), runtime.GOOS, runtime.GOARCH), buf.String())
+	assert.Equal(t, fmt.Sprintf("gosecret 1.0.0 %s %s %s\n", runtime.Version(), runtime.GOOS, runtime.GOARCH), buf.String())
 }
 
 func TestGetVersion(t *testing.T) {

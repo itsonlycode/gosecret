@@ -7,16 +7,16 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/gopasspw/gopass/internal/notify"
-	"github.com/gopasspw/gopass/internal/out"
-	"github.com/gopasspw/gopass/internal/store"
-	"github.com/gopasspw/gopass/pkg/clipboard"
-	"github.com/gopasspw/gopass/pkg/ctxutil"
-	"github.com/gopasspw/gopass/pkg/debug"
-	"github.com/gopasspw/gopass/pkg/gopass"
-	"github.com/gopasspw/gopass/pkg/gopass/secrets"
-	"github.com/gopasspw/gopass/pkg/pwgen/pwrules"
-	"github.com/gopasspw/gopass/pkg/qrcon"
+	"github.com/itsonlycode/gosecret/internal/notify"
+	"github.com/itsonlycode/gosecret/internal/out"
+	"github.com/itsonlycode/gosecret/internal/store"
+	"github.com/itsonlycode/gosecret/pkg/clipboard"
+	"github.com/itsonlycode/gosecret/pkg/ctxutil"
+	"github.com/itsonlycode/gosecret/pkg/debug"
+	"github.com/itsonlycode/gosecret/pkg/gosecret"
+	"github.com/itsonlycode/gosecret/pkg/gosecret/secrets"
+	"github.com/itsonlycode/gosecret/pkg/pwgen/pwrules"
+	"github.com/itsonlycode/gosecret/pkg/qrcon"
 
 	"github.com/urfave/cli/v2"
 )
@@ -75,7 +75,7 @@ func (s *Action) show(ctx context.Context, c *cli.Context, name string, recurse 
 		return s.List(c)
 	}
 	if s.Store.IsDir(ctx, name) && ctxutil.IsTerminal(ctx) {
-		out.Warningf(ctx, "%s is a secret and a folder. Use 'gopass show %s' to display the secret and 'gopass list %s' to show the content of the folder", name, name, name)
+		out.Warningf(ctx, "%s is a secret and a folder. Use 'gosecret show %s' to display the secret and 'gosecret list %s' to show the content of the folder", name, name, name)
 	}
 
 	if HasRevision(ctx) {
@@ -134,7 +134,7 @@ func (s *Action) parseRevision(ctx context.Context, name, revision string) (stri
 }
 
 // showHandleOutput displays a secret
-func (s *Action) showHandleOutput(ctx context.Context, name string, sec gopass.Secret) error {
+func (s *Action) showHandleOutput(ctx context.Context, name string, sec gosecret.Secret) error {
 	pw, body, err := s.showGetContent(ctx, sec)
 	if err != nil {
 		return err
@@ -180,7 +180,7 @@ func (s *Action) showHandleOutput(ctx context.Context, name string, sec gopass.S
 	return nil
 }
 
-func (s *Action) showGetContent(ctx context.Context, sec gopass.Secret) (string, string, error) {
+func (s *Action) showGetContent(ctx context.Context, sec gosecret.Secret) (string, string, error) {
 	// YAML key
 	if HasKey(ctx) && ctxutil.IsShowParsing(ctx) {
 		key := GetKey(ctx)
@@ -241,7 +241,7 @@ func (s *Action) showGetContent(ctx context.Context, sec gopass.Secret) (string,
 	return sec.Password(), fullBody, nil
 }
 
-func isUnsafeKey(key string, sec gopass.Secret) bool {
+func isUnsafeKey(key string, sec gosecret.Secret) bool {
 	if strings.ToLower(key) == "password" {
 		return true
 	}
@@ -290,7 +290,7 @@ func (s *Action) hasAliasDomain(ctx context.Context, name string) string {
 func (s *Action) showHandleError(ctx context.Context, c *cli.Context, name string, recurse bool, err error) error {
 	if err != store.ErrNotFound || !recurse || !ctxutil.IsTerminal(ctx) {
 		if IsClip(ctx) {
-			_ = notify.Notify(ctx, "gopass - error", fmt.Sprintf("failed to retrieve secret %q: %s", name, err))
+			_ = notify.Notify(ctx, "gosecret - error", fmt.Sprintf("failed to retrieve secret %q: %s", name, err))
 		}
 		return ExitError(ExitUnknown, err, "failed to retrieve secret %q: %s", name, err)
 	}
@@ -300,14 +300,14 @@ func (s *Action) showHandleError(ctx context.Context, c *cli.Context, name strin
 	}
 
 	if IsClip(ctx) {
-		_ = notify.Notify(ctx, "gopass - warning", fmt.Sprintf("Entry %q not found. Starting search...", name))
+		_ = notify.Notify(ctx, "gosecret - warning", fmt.Sprintf("Entry %q not found. Starting search...", name))
 	}
 
 	out.Warningf(ctx, "Entry %q not found. Starting search...", name)
 	c.Context = ctx
 	if err := s.Find(c); err != nil {
 		if IsClip(ctx) {
-			_ = notify.Notify(ctx, "gopass - error", fmt.Sprintf("%s", err))
+			_ = notify.Notify(ctx, "gosecret - error", fmt.Sprintf("%s", err))
 		}
 		return ExitError(ExitNotFound, err, "%s", err)
 	}

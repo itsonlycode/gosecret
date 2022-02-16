@@ -6,11 +6,11 @@ import (
 	"os"
 	"testing"
 
-	"github.com/gopasspw/gopass/internal/backend/crypto/plain"
-	"github.com/gopasspw/gopass/internal/backend/storage/fs"
-	"github.com/gopasspw/gopass/internal/out"
-	"github.com/gopasspw/gopass/pkg/ctxutil"
-	"github.com/gopasspw/gopass/pkg/gopass/secrets"
+	"github.com/itsonlycode/gosecret/internal/backend/crypto/plain"
+	"github.com/itsonlycode/gosecret/internal/backend/storage/fs"
+	"github.com/itsonlycode/gosecret/internal/out"
+	"github.com/itsonlycode/gosecret/pkg/ctxutil"
+	"github.com/itsonlycode/gosecret/pkg/gosecret/secrets"
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
@@ -27,7 +27,7 @@ func TestFsck(t *testing.T) {
 	}()
 
 	// common setup
-	tempdir, err := os.MkdirTemp("", "gopass-")
+	tempdir, err := os.MkdirTemp("", "gosecret-")
 	require.NoError(t, err)
 
 	s := &Store{

@@ -11,8 +11,8 @@ import (
 
 	"golang.org/x/sys/windows/registry"
 
-	"github.com/gopasspw/gopass/pkg/debug"
-	"github.com/gopasspw/gopass/pkg/fsutil"
+	"github.com/itsonlycode/gosecret/pkg/debug"
+	"github.com/itsonlycode/gosecret/pkg/fsutil"
 )
 
 func detectBinary(bin string) (string, error) {

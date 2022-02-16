@@ -56,7 +56,7 @@ type Pre1102 struct {
 	AutoImport    bool              `yaml:"autoimport"`    // import missing public keys w/o asking
 	ClipTimeout   int               `yaml:"cliptimeout"`   // clear clipboard after seconds
 	ExportKeys    bool              `yaml:"exportkeys"`    // automatically export public keys of all recipients
-	MIME          bool              `yaml:"mime"`          // enable gopass native MIME secrets
+	MIME          bool              `yaml:"mime"`          // enable gosecret native MIME secrets
 	NoColor       bool              `yaml:"nocolor"`       // do not use color when outputing text
 	NoPager       bool              `yaml:"nopager"`       // do not invoke a pager to display long lists
 	Notifications bool              `yaml:"notifications"` // enable desktop notifications
@@ -154,7 +154,7 @@ func (c *Pre193) Config() *Config {
 	return cfg
 }
 
-// Pre182 is the gopass config structure before version 1.8.2
+// Pre182 is the gosecret config structure before version 1.8.2
 type Pre182 struct {
 	Path    string                        `yaml:"-"`
 	Root    *Pre182StoreConfig            `yaml:"root"`
@@ -216,7 +216,7 @@ func (c *Pre182) Config() *Config {
 	return cfg
 }
 
-// Pre140 is the gopass config structure before version 1.4.0
+// Pre140 is the gosecret config structure before version 1.4.0
 type Pre140 struct {
 	AskForMore  bool              `yaml:"askformore"`  // ask for more data on generate
 	AutoImport  bool              `yaml:"autoimport"`  // import missing public keys w/o asking
@@ -253,7 +253,7 @@ func (c *Pre140) Config() *Config {
 	return cfg
 }
 
-// Pre130 is the gopass config structure before version 1.3.0. Not all fields were
+// Pre130 is the gosecret config structure before version 1.3.0. Not all fields were
 // available between 1.0.0 and 1.3.0, but this struct should cover all of them.
 type Pre130 struct {
 	AlwaysTrust bool              `yaml:"alwaystrust"` // always trust public keys when encrypting

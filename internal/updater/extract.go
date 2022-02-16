@@ -11,7 +11,7 @@ import (
 	"os"
 	"path/filepath"
 
-	"github.com/gopasspw/gopass/pkg/debug"
+	"github.com/itsonlycode/gosecret/pkg/debug"
 )
 
 func extractFile(buf []byte, filename, dest string) error {
@@ -61,7 +61,7 @@ func extractZip(buf []byte, dfh io.WriteCloser, dest string) error {
 	}
 
 	for i := 0; i < len(zrd.File); i++ {
-		if zrd.File[i].Name != "gopass.exe" {
+		if zrd.File[i].Name != "gosecret.exe" {
 			continue
 		}
 
@@ -74,7 +74,7 @@ func extractZip(buf []byte, dfh io.WriteCloser, dest string) error {
 		if err != nil {
 			dfh.Close()
 			os.Remove(dest)
-			return fmt.Errorf("failed to read gopass.exe from zip file: %w", err)
+			return fmt.Errorf("failed to read gosecret.exe from zip file: %w", err)
 		}
 		// success
 		debug.Log("wrote %d bytes to %v", n, dest)
@@ -98,7 +98,7 @@ func extractTar(rd io.Reader, dfh io.WriteCloser, dest string) error {
 		if header.Typeflag != tar.TypeReg {
 			continue
 		}
-		if name != "gopass" {
+		if name != "gosecret" {
 			continue
 		}
 
@@ -106,7 +106,7 @@ func extractTar(rd io.Reader, dfh io.WriteCloser, dest string) error {
 		if err != nil {
 			dfh.Close()
 			os.Remove(dest)
-			return fmt.Errorf("failed to read gopass from tar file: %w", err)
+			return fmt.Errorf("failed to read gosecret from tar file: %w", err)
 		}
 		// success
 		debug.Log("wrote %d bytes to %v", n, dest)

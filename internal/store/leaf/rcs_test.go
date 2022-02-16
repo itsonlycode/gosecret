@@ -5,8 +5,8 @@ import (
 	"os"
 	"testing"
 
-	"github.com/gopasspw/gopass/internal/backend"
-	"github.com/gopasspw/gopass/pkg/ctxutil"
+	"github.com/itsonlycode/gosecret/internal/backend"
+	"github.com/itsonlycode/gosecret/pkg/ctxutil"
 
 	"github.com/blang/semver/v4"
 	"github.com/stretchr/testify/assert"
@@ -16,7 +16,7 @@ import (
 func TestGit(t *testing.T) {
 	ctx := context.Background()
 
-	tempdir, err := os.MkdirTemp("", "gopass-")
+	tempdir, err := os.MkdirTemp("", "gosecret-")
 	require.NoError(t, err)
 	defer func() {
 		_ = os.RemoveAll(tempdir)
@@ -46,7 +46,7 @@ func TestGit(t *testing.T) {
 func TestGitRevisions(t *testing.T) {
 	ctx := context.Background()
 
-	tempdir, err := os.MkdirTemp("", "gopass-")
+	tempdir, err := os.MkdirTemp("", "gosecret-")
 	require.NoError(t, err)
 	defer func() {
 		_ = os.RemoveAll(tempdir)

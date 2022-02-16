@@ -12,13 +12,13 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/gopasspw/gopass/tests/gptest"
+	"github.com/gosecretpw/gosecret/tests/gptest"
 	shellquote "github.com/kballard/go-shellquote"
 	"github.com/stretchr/testify/require"
 )
 
 const (
-	gopassConfig = `
+	gosecretConfig = `
 exportkeys: false
 `
 	keyID = "BE73F104"
@@ -27,7 +27,7 @@ exportkeys: false
 type tester struct {
 	t *testing.T
 
-	// Binary is the path to the gopass binary used for testing
+	// Binary is the path to the gosecret binary used for testing
 	Binary    string
 	sourceDir string
 	tempDir   string
@@ -41,26 +41,26 @@ func newTester(t *testing.T) *tester {
 		sourceDir = d
 	}
 
-	gopassBin := ""
+	gosecretBin := ""
 	if b := os.Getenv("GOPASS_BINARY"); b != "" {
-		gopassBin = b
+		gosecretBin = b
 	}
-	fi, err := os.Stat(gopassBin)
+	fi, err := os.Stat(gosecretBin)
 	if err != nil {
-		t.Skipf("Failed to stat GOPASS_BINARY %s: %s", gopassBin, err)
+		t.Skipf("Failed to stat GOPASS_BINARY %s: %s", gosecretBin, err)
 	}
-	if !strings.HasSuffix(gopassBin, ".exe") && fi.Mode()&0111 == 0 {
+	if !strings.HasSuffix(gosecretBin, ".exe") && fi.Mode()&0111 == 0 {
 		t.Fatalf("GOPASS_BINARY is not executeable")
 	}
-	t.Logf("Using gopass binary: %s", gopassBin)
+	t.Logf("Using gosecret binary: %s", gosecretBin)
 
 	ts := &tester{
 		t:         t,
 		sourceDir: sourceDir,
-		Binary:    gopassBin,
+		Binary:    gosecretBin,
 	}
 	// create tempDir
-	td, err := os.MkdirTemp("", "gopass-")
+	td, err := os.MkdirTemp("", "gosecret-")
 	require.NoError(t, err)
 
 	t.Logf("Tempdir: %s", td)
@@ -71,15 +71,15 @@ func newTester(t *testing.T) *tester {
 	require.NoError(t, os.Setenv("GNUPGHOME", ts.gpgDir()))
 	require.NoError(t, os.Setenv("GOPASS_DEBUG", ""))
 	require.NoError(t, os.Setenv("NO_COLOR", "true"))
-	require.NoError(t, os.Setenv("GOPASS_CONFIG", ts.gopassConfig()))
+	require.NoError(t, os.Setenv("GOPASS_CONFIG", ts.gosecretConfig()))
 	require.NoError(t, os.Setenv("GOPASS_NO_NOTIFY", "true"))
 	require.NoError(t, os.Setenv("GOPASS_HOMEDIR", td))
 
 	// write config
-	require.NoError(t, os.MkdirAll(filepath.Dir(ts.gopassConfig()), 0700))
+	require.NoError(t, os.MkdirAll(filepath.Dir(ts.gosecretConfig()), 0700))
 	// we need to set the root path to something else than the root directory otherwise the mounts will show as regular entries
-	if err := os.WriteFile(ts.gopassConfig(), []byte(gopassConfig+"\npath: "+ts.storeDir("root")+"\n"), 0600); err != nil {
-		t.Fatalf("Failed to write gopass config to %s: %s", ts.gopassConfig(), err)
+	if err := os.WriteFile(ts.gosecretConfig(), []byte(gosecretConfig+"\npath: "+ts.storeDir("root")+"\n"), 0600); err != nil {
+		t.Fatalf("Failed to write gosecret config to %s: %s", ts.gosecretConfig(), err)
 	}
 
 	// copy gpg test files
@@ -107,12 +107,12 @@ func (ts tester) gpgDir() string {
 	return filepath.Join(ts.tempDir, ".gnupg")
 }
 
-func (ts tester) gopassConfig() string {
-	return filepath.Join(ts.tempDir, ".config", "gopass", "config.yml")
+func (ts tester) gosecretConfig() string {
+	return filepath.Join(ts.tempDir, ".config", "gosecret", "config.yml")
 }
 
 func (ts tester) storeDir(mount string) string {
-	return filepath.Join(ts.tempDir, ".local", "share", "gopass", "stores", mount)
+	return filepath.Join(ts.tempDir, ".local", "share", "gosecret", "stores", mount)
 }
 
 func (ts tester) workDir() string {

@@ -5,10 +5,10 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/gopasspw/gopass/internal/cache"
-	"github.com/gopasspw/gopass/pkg/debug"
-	"github.com/gopasspw/gopass/pkg/pinentry/cli"
-	"github.com/gopasspw/pinentry"
+	"github.com/itsonlycode/gosecret/internal/cache"
+	"github.com/itsonlycode/gosecret/pkg/debug"
+	"github.com/itsonlycode/gosecret/pkg/pinentry/cli"
+	"github.com/itsonlycode/pinentry"
 )
 
 type piner interface {
@@ -67,7 +67,7 @@ func (a *askPass) Passphrase(key string, reason string, repeat bool) (string, er
 	}
 	defer pi.Close()
 
-	_ = pi.Set("title", "gopass")
+	_ = pi.Set("title", "gosecret")
 	_ = pi.Set("desc", "Need your passphrase "+reason)
 	_ = pi.Set("prompt", "Please enter your passphrase:")
 	_ = pi.Set("ok", "OK")

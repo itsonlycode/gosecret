@@ -5,7 +5,7 @@ import (
 	"os"
 	"testing"
 
-	"github.com/gopasspw/gopass/internal/backend"
+	"github.com/itsonlycode/gosecret/internal/backend"
 
 	"github.com/fatih/color"
 	"github.com/stretchr/testify/assert"
@@ -15,7 +15,7 @@ import (
 func TestTemplates(t *testing.T) {
 	ctx := context.Background()
 
-	tempdir, err := os.MkdirTemp("", "gopass-")
+	tempdir, err := os.MkdirTemp("", "gosecret-")
 	require.NoError(t, err)
 	defer func() {
 		_ = os.RemoveAll(tempdir)
@@ -40,7 +40,7 @@ func TestTemplates(t *testing.T) {
 	assert.Equal(t, 1, len(s.ListTemplates(ctx, "")))
 
 	tt := s.TemplateTree(ctx)
-	assert.Equal(t, "gopass\n└── foo\n", tt.Format(0))
+	assert.Equal(t, "gosecret\n└── foo\n", tt.Format(0))
 
 	assert.True(t, s.HasTemplate(ctx, "foo"))
 

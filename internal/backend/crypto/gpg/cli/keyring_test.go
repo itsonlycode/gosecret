@@ -5,7 +5,7 @@ import (
 	"runtime"
 	"testing"
 
-	"github.com/gopasspw/gopass/pkg/ctxutil"
+	"github.com/itsonlycode/gosecret/pkg/ctxutil"
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
@@ -76,7 +76,7 @@ func TestReadNamesFromKey(t *testing.T) {
 
 	names, err := g.ReadNamesFromKey(ctx, []byte(pubkey))
 	assert.NoError(t, err)
-	assert.Equal(t, []string{"Gopass Archive Signing Key <gopass@justwatch.com>"}, names)
+	assert.Equal(t, []string{"Gopass Archive Signing Key <gosecret@justwatch.com>"}, names)
 }
 
 func TestExportPublicKey(t *testing.T) {

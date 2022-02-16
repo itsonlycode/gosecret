@@ -4,8 +4,8 @@ import (
 	"context"
 	"fmt"
 
-	"github.com/gopasspw/gopass/internal/store/mockstore"
-	"github.com/gopasspw/gopass/pkg/gopass"
+	"github.com/itsonlycode/gosecret/internal/store/mockstore"
+	"github.com/itsonlycode/gosecret/pkg/gosecret"
 )
 
 // Secret is a mock secret for writing
@@ -18,12 +18,12 @@ func (m *Secret) Bytes() []byte {
 	return m.Buf
 }
 
-// MockAPI is a gopass API mock
+// MockAPI is a gosecret API mock
 type MockAPI struct {
 	store *mockstore.MockStore
 }
 
-// New creates a new gopass API mock
+// New creates a new gosecret API mock
 func New() *MockAPI {
 	return &MockAPI{
 		store: mockstore.New(""),
@@ -41,7 +41,7 @@ func (a *MockAPI) List(ctx context.Context) ([]string, error) {
 }
 
 // Get does nothing
-func (a *MockAPI) Get(ctx context.Context, name, _ string) (gopass.Secret, error) {
+func (a *MockAPI) Get(ctx context.Context, name, _ string) (gosecret.Secret, error) {
 	return a.store.Get(ctx, name)
 }
 
@@ -59,7 +59,7 @@ func (a *MockAPI) Revisions(ctx context.Context, name string) ([]string, error) 
 }
 
 // Set does nothing
-func (a *MockAPI) Set(ctx context.Context, name string, sec gopass.Byter) error {
+func (a *MockAPI) Set(ctx context.Context, name string, sec gosecret.Byter) error {
 	return a.store.Set(ctx, name, sec)
 }
 

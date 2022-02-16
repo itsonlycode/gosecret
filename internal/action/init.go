@@ -4,14 +4,14 @@ import (
 	"context"
 	"fmt"
 
-	"github.com/gopasspw/gopass/internal/backend"
-	"github.com/gopasspw/gopass/internal/config"
-	"github.com/gopasspw/gopass/internal/cui"
-	"github.com/gopasspw/gopass/internal/out"
-	"github.com/gopasspw/gopass/pkg/ctxutil"
-	"github.com/gopasspw/gopass/pkg/debug"
-	"github.com/gopasspw/gopass/pkg/fsutil"
-	"github.com/gopasspw/gopass/pkg/termio"
+	"github.com/itsonlycode/gosecret/internal/backend"
+	"github.com/itsonlycode/gosecret/internal/config"
+	"github.com/itsonlycode/gosecret/internal/cui"
+	"github.com/itsonlycode/gosecret/internal/out"
+	"github.com/itsonlycode/gosecret/pkg/ctxutil"
+	"github.com/itsonlycode/gosecret/pkg/debug"
+	"github.com/itsonlycode/gosecret/pkg/fsutil"
+	"github.com/itsonlycode/gosecret/pkg/termio"
 	"github.com/urfave/cli/v2"
 )
 
@@ -44,9 +44,9 @@ func (s *Action) IsInitialized(c *cli.Context) error {
 	}
 
 	out.Printf(ctx, logo)
-	out.Printf(ctx, "🌟 Welcome to gopass!")
+	out.Printf(ctx, "🌟 Welcome to gosecret!")
 	out.Noticef(ctx, "No existing configuration found.")
-	out.Printf(ctx, "☝ Please run 'gopass setup'")
+	out.Printf(ctx, "☝ Please run 'gosecret setup'")
 
 	return ExitError(ExitNotInitialized, err, "not initialized")
 }
@@ -120,7 +120,7 @@ func (s *Action) init(ctx context.Context, alias, path string, keys ...string) e
 		keys, _ = crypto.ListIdentities(ctx)
 	}
 	if len(keys) < 1 {
-		out.Notice(ctx, "Hint: Use 'gopass init <subkey> to use subkeys!'")
+		out.Notice(ctx, "Hint: Use 'gosecret init <subkey> to use subkeys!'")
 		nk, err := cui.AskForPrivateKey(ctx, crypto, "🎮 Please select a private key for encrypting secrets:")
 		if err != nil {
 			return fmt.Errorf("failed to read user input: %w", err)

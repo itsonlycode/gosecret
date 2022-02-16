@@ -4,14 +4,14 @@ import (
 	"context"
 	"testing"
 
-	"github.com/gopasspw/gopass/pkg/gopass"
-	"github.com/gopasspw/gopass/pkg/gopass/secrets/secparse"
+	"github.com/itsonlycode/gosecret/pkg/gosecret"
+	"github.com/itsonlycode/gosecret/pkg/gosecret/secrets/secparse"
 	"github.com/stretchr/testify/assert"
 )
 
 type kvMock struct{}
 
-func (k kvMock) Get(ctx context.Context, key string) (gopass.Secret, error) {
+func (k kvMock) Get(ctx context.Context, key string) (gosecret.Secret, error) {
 	return secparse.Parse([]byte("barfoo\n---\nbarkey: barvalue\n"))
 }
 

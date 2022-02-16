@@ -7,8 +7,8 @@ import (
 	"os"
 	"path/filepath"
 
-	"github.com/gopasspw/gopass/pkg/appdir"
-	"github.com/gopasspw/gopass/pkg/fsutil"
+	"github.com/itsonlycode/gosecret/pkg/appdir"
+	"github.com/itsonlycode/gosecret/pkg/fsutil"
 )
 
 func iconURI() string {
@@ -19,7 +19,7 @@ func iconURI() string {
 		}
 	}
 
-	iconFN := filepath.Join(userCache, "gopass-logo-small.png")
+	iconFN := filepath.Join(userCache, "gosecret-logo-small.png")
 	if !fsutil.IsFile(iconFN) {
 		fh, err := os.OpenFile(iconFN, os.O_WRONLY|os.O_CREATE, 0644)
 		if err != nil {

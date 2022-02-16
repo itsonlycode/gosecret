@@ -12,13 +12,13 @@ import (
 	"runtime"
 	"testing"
 
-	"github.com/gopasspw/gopass/internal/out"
-	"github.com/gopasspw/gopass/internal/updater"
-	"github.com/gopasspw/gopass/pkg/ctxutil"
-	"github.com/gopasspw/gopass/tests/gptest"
+	"github.com/itsonlycode/gosecret/internal/out"
+	"github.com/itsonlycode/gosecret/internal/updater"
+	"github.com/itsonlycode/gosecret/pkg/ctxutil"
+	"github.com/itsonlycode/gosecret/tests/gptest"
 
-	_ "github.com/gopasspw/gopass/internal/backend/crypto"
-	_ "github.com/gopasspw/gopass/internal/backend/storage"
+	_ "github.com/itsonlycode/gosecret/internal/backend/crypto"
+	_ "github.com/itsonlycode/gosecret/internal/backend/storage"
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
@@ -33,19 +33,19 @@ const testUpdateJSON = `{
     "published_at": "2017-12-20T14:38:21Z",
     "assets": [
       {
-       "browser_download_url": "%s/gopass.tar.gz",
+       "browser_download_url": "%s/gosecret.tar.gz",
        "id": 5676623,
-       "name": "gopass-1.6.6-%s-%s.tar.gz"
+       "name": "gosecret-1.6.6-%s-%s.tar.gz"
       },
       {
        "browser_download_url": "%s/SHA256SUMS",
        "id": 5676624,
-       "name": "gopass-1.6.6_SHA256SUMS"
+       "name": "gosecret-1.6.6_SHA256SUMS"
       },
       {
        "browser_download_url": "%s/SHA256SUMS.sig",
        "id": 5676625,
-       "name": "gopass-1.6.6_SHA256SUMS.sig"
+       "name": "gosecret-1.6.6_SHA256SUMS.sig"
       }
     ]
   }`
@@ -75,7 +75,7 @@ func TestUpdate(t *testing.T) {
 		body := "foobar"
 		hdr := &tar.Header{
 			Typeflag: tar.TypeReg,
-			Name:     "gopass",
+			Name:     "gosecret",
 			Mode:     0600,
 			Size:     int64(len(body)),
 		}

@@ -4,8 +4,8 @@ import (
 	"context"
 	"testing"
 
-	"github.com/gopasspw/gopass/pkg/ctxutil"
-	"github.com/gopasspw/gopass/tests/gptest"
+	"github.com/itsonlycode/gosecret/pkg/ctxutil"
+	"github.com/itsonlycode/gosecret/tests/gptest"
 
 	"github.com/fatih/color"
 	"github.com/stretchr/testify/assert"
@@ -27,5 +27,5 @@ func TestRecipients(t *testing.T) {
 	assert.Equal(t, []string{"0xDEADBEEF"}, rs.ListRecipients(ctx, ""))
 	rt, err := rs.RecipientsTree(ctx, false)
 	require.NoError(t, err)
-	assert.Equal(t, "gopass\n└── 0xDEADBEEF\n", rt.Format(0))
+	assert.Equal(t, "gosecret\n└── 0xDEADBEEF\n", rt.Format(0))
 }

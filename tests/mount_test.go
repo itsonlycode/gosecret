@@ -22,7 +22,7 @@ func TestSingleMount(t *testing.T) {
 
 	out, err = ts.run("mounts")
 	assert.NoError(t, err)
-	want := "gopass (" + ts.storeDir("root") + ")\n"
+	want := "gosecret (" + ts.storeDir("root") + ")\n"
 	want += "└── mnt/\n    └── m1 (" + ts.storeDir("m1") + ")"
 	assert.Equal(t, strings.TrimSpace(want), out)
 
@@ -33,7 +33,7 @@ func TestSingleMount(t *testing.T) {
 	ts.initSecrets("mnt/m1/")
 
 	list := `
-gopass
+gosecret
 ├── baz
 ├── fixed/
 │   ├── secret
@@ -78,7 +78,7 @@ func TestMountShadowing(t *testing.T) {
 	// check the mount is there
 	out, err = ts.run("mounts")
 	assert.NoError(t, err)
-	want := "gopass (" + ts.storeDir("root") + ")\n"
+	want := "gosecret (" + ts.storeDir("root") + ")\n"
 	want += "└── mnt/\n    └── m1 (" + ts.storeDir("m1") + ")"
 	assert.Equal(t, strings.TrimSpace(want), out)
 
@@ -101,7 +101,7 @@ func TestMountShadowing(t *testing.T) {
 
 	// check that the mount is listed
 	list := `
-gopass
+gosecret
 ├── baz
 ├── fixed/
 │   ├── secret
@@ -129,7 +129,7 @@ gopass
 	assert.NoError(t, err)
 
 	list = `
-gopass
+gosecret
 ├── baz
 ├── fixed/
 │   ├── secret
@@ -165,7 +165,7 @@ func TestMultiMount(t *testing.T) {
 	ts.initSecrets("mnt/m1/")
 
 	list := `
-gopass
+gosecret
 ├── baz
 ├── fixed/
 │   ├── secret
@@ -195,7 +195,7 @@ gopass
 	ts.initSecrets("mnt/m2/")
 
 	list = `
-gopass
+gosecret
 ├── baz
 ├── fixed/
 │   ├── secret

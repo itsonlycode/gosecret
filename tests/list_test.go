@@ -15,16 +15,16 @@ func TestList(t *testing.T) {
 
 	out, err := ts.run("list")
 	assert.NoError(t, err)
-	assert.Equal(t, "gopass", out)
+	assert.Equal(t, "gosecret", out)
 
 	out, err = ts.run("ls")
 	assert.NoError(t, err)
-	assert.Equal(t, "gopass", out)
+	assert.Equal(t, "gosecret", out)
 
 	ts.initSecrets("")
 
 	list := `
-gopass
+gosecret
 ├── baz
 ├── fixed/
 │   ├── secret
@@ -61,7 +61,7 @@ func TestListRegressions1628(t *testing.T) {
 
 	out, err := ts.run("list")
 	assert.NoError(t, err)
-	assert.Equal(t, "gopass", out)
+	assert.Equal(t, "gosecret", out)
 
 	_, err = ts.run("insert misc/file1")
 	assert.NoError(t, err)
@@ -70,7 +70,7 @@ func TestListRegressions1628(t *testing.T) {
 
 	out, err = ts.run("list")
 	assert.NoError(t, err)
-	exp := `gopass
+	exp := `gosecret
 └── misc/
     ├── file1
     └── folder1/

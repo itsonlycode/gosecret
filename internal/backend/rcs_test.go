@@ -8,7 +8,7 @@ import (
 	"path/filepath"
 	"testing"
 
-	"github.com/gopasspw/gopass/internal/out"
+	"github.com/itsonlycode/gosecret/internal/out"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 )
@@ -16,7 +16,7 @@ import (
 func TestClone(t *testing.T) {
 	ctx := context.Background()
 
-	td, err := os.MkdirTemp("", "gopass-")
+	td, err := os.MkdirTemp("", "gosecret-")
 	require.NoError(t, err)
 	defer func() {
 		_ = os.RemoveAll(td)
@@ -39,7 +39,7 @@ func TestClone(t *testing.T) {
 func TestInitRCS(t *testing.T) {
 	ctx := context.Background()
 
-	td, err := os.MkdirTemp("", "gopass-")
+	td, err := os.MkdirTemp("", "gosecret-")
 	require.NoError(t, err)
 	defer func() {
 		_ = os.RemoveAll(td)

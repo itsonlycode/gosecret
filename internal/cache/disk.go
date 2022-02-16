@@ -7,9 +7,9 @@ import (
 	"strings"
 	"time"
 
-	"github.com/gopasspw/gopass/pkg/appdir"
-	"github.com/gopasspw/gopass/pkg/debug"
-	"github.com/gopasspw/gopass/pkg/fsutil"
+	"github.com/itsonlycode/gosecret/pkg/appdir"
+	"github.com/itsonlycode/gosecret/pkg/debug"
+	"github.com/itsonlycode/gosecret/pkg/fsutil"
 )
 
 // OnDisk is a simple on disk cache.
@@ -21,7 +21,7 @@ type OnDisk struct {
 
 // NewOnDisk creates a new on disk cache.
 func NewOnDisk(name string, ttl time.Duration) (*OnDisk, error) {
-	d := filepath.Join(appdir.UserCache(), "gopass", name)
+	d := filepath.Join(appdir.UserCache(), "gosecret", name)
 	if err := os.MkdirAll(d, 0755); err != nil {
 		return nil, fmt.Errorf("failed to create ondisk cache dir %s: %w", d, err)
 	}

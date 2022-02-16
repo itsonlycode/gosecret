@@ -10,11 +10,11 @@ import (
 	"errors"
 
 	"github.com/google/go-cmp/cmp"
-	"github.com/gopasspw/gopass/internal/out"
-	"github.com/gopasspw/gopass/internal/recipients"
-	"github.com/gopasspw/gopass/internal/store"
-	"github.com/gopasspw/gopass/pkg/ctxutil"
-	"github.com/gopasspw/gopass/pkg/debug"
+	"github.com/itsonlycode/gosecret/internal/out"
+	"github.com/itsonlycode/gosecret/internal/recipients"
+	"github.com/itsonlycode/gosecret/internal/store"
+	"github.com/itsonlycode/gosecret/pkg/ctxutil"
+	"github.com/itsonlycode/gosecret/pkg/debug"
 )
 
 const (
@@ -267,7 +267,7 @@ func (s *Store) saveRecipients(ctx context.Context, rs []string, msg string) err
 		}
 		if errors.Is(err, store.ErrGitNoRemote) {
 			msg := "Warning: git has no remote. Ignoring auto-push option\n" +
-				"Run: gopass git remote add origin ..."
+				"Run: gosecret git remote add origin ..."
 			debug.Log(msg)
 			return nil
 		}

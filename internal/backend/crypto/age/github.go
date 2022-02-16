@@ -8,7 +8,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/gopasspw/gopass/pkg/debug"
+	"github.com/itsonlycode/gosecret/pkg/debug"
 )
 
 // getPublicKeysGithub returns the public keys for a github user. It will

@@ -11,7 +11,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/gopasspw/gopass/pkg/debug"
+	"github.com/itsonlycode/gosecret/pkg/debug"
 
 	"github.com/cenkalti/backoff"
 )

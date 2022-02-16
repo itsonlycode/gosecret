@@ -18,8 +18,8 @@ var (
 
 	// BaseURL is exported for tests
 	BaseURL    = "https://api.github.com/repos/%s/%s/releases/latest"
-	gitHubOrg  = "gopasspw"
-	gitHubRepo = "gopass"
+	gitHubOrg  = "itsonlycode"
+	gitHubRepo = "gosecret"
 )
 
 // Asset is a GitHub release asset

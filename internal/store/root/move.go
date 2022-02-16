@@ -8,10 +8,10 @@ import (
 
 	"errors"
 
-	"github.com/gopasspw/gopass/internal/store"
-	"github.com/gopasspw/gopass/internal/store/leaf"
-	"github.com/gopasspw/gopass/pkg/ctxutil"
-	"github.com/gopasspw/gopass/pkg/debug"
+	"github.com/itsonlycode/gosecret/internal/store"
+	"github.com/itsonlycode/gosecret/internal/store/leaf"
+	"github.com/itsonlycode/gosecret/pkg/ctxutil"
+	"github.com/itsonlycode/gosecret/pkg/debug"
 )
 
 // Copy will copy one entry to another location. Multi-store copies are
@@ -66,13 +66,13 @@ func (r *Store) move(ctx context.Context, from, to string, delete bool) error {
 	if err := subFrom.Storage().Push(ctx, "", ""); err != nil {
 		if errors.Is(err, store.ErrGitNotInit) {
 			msg := "Warning: git is not initialized for this storage. Ignoring auto-push option\n" +
-				"Run: gopass git init"
+				"Run: gosecret git init"
 			debug.Log(msg)
 			return nil
 		}
 		if errors.Is(err, store.ErrGitNoRemote) {
 			msg := "Warning: git has no remote. Ignoring auto-push option\n" +
-				"Run: gopass git remote add origin ..."
+				"Run: gosecret git remote add origin ..."
 			debug.Log(msg)
 			return nil
 		}
@@ -82,13 +82,13 @@ func (r *Store) move(ctx context.Context, from, to string, delete bool) error {
 		if err := subTo.Storage().Push(ctx, "", ""); err != nil {
 			if errors.Is(err, store.ErrGitNotInit) {
 				msg := "Warning: git is not initialized for this storage. Ignoring auto-push option\n" +
-					"Run: gopass git init"
+					"Run: gosecret git init"
 				debug.Log(msg)
 				return nil
 			}
 			if errors.Is(err, store.ErrGitNoRemote) {
 				msg := "Warning: git has no remote. Ignoring auto-push option\n" +
-					"Run: gopass git remote add origin ..."
+					"Run: gosecret git remote add origin ..."
 				debug.Log(msg)
 				return nil
 			}
@@ -182,7 +182,7 @@ func computeMoveDestination(src, from, to string, srcIsDir, dstIsDir bool) strin
 func (r *Store) Delete(ctx context.Context, name string) error {
 	store, sn := r.getStore(name)
 	if sn == "" {
-		return fmt.Errorf("can not delete a mount point. Use `gopass mounts remove %s`", store.Alias())
+		return fmt.Errorf("can not delete a mount point. Use `gosecret mounts remove %s`", store.Alias())
 	}
 	return store.Delete(ctx, sn)
 }
@@ -191,7 +191,7 @@ func (r *Store) Delete(ctx context.Context, name string) error {
 func (r *Store) Prune(ctx context.Context, tree string) error {
 	for mp := range r.mounts {
 		if strings.HasPrefix(mp, tree) {
-			return fmt.Errorf("can not prune subtree with mounts. Unmount first: `gopass mounts remove %s`", mp)
+			return fmt.Errorf("can not prune subtree with mounts. Unmount first: `gosecret mounts remove %s`", mp)
 		}
 	}
 

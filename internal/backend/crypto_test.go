@@ -13,7 +13,7 @@ import (
 func TestDetectCrypto(t *testing.T) {
 	ctx := context.Background()
 
-	td, err := os.MkdirTemp("", "gopass-")
+	td, err := os.MkdirTemp("", "gosecret-")
 	require.NoError(t, err)
 	defer func() {
 		_ = os.RemoveAll(td)

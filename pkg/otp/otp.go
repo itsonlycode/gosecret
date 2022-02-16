@@ -6,11 +6,11 @@ import (
 	"strings"
 
 	"github.com/gokyle/twofactor"
-	"github.com/gopasspw/gopass/pkg/gopass"
+	"github.com/itsonlycode/gosecret/pkg/gosecret"
 )
 
 // Calculate will compute a OTP code from a given secret
-func Calculate(name string, sec gopass.Secret) (twofactor.OTP, string, error) {
+func Calculate(name string, sec gosecret.Secret) (twofactor.OTP, string, error) {
 	otpURL, found := sec.Get("otpauth")
 	if found && strings.HasPrefix(otpURL, "//") {
 		otpURL = "otpauth:" + otpURL

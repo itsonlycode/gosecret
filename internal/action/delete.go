@@ -4,9 +4,9 @@ import (
 	"context"
 	"fmt"
 
-	"github.com/gopasspw/gopass/pkg/ctxutil"
-	"github.com/gopasspw/gopass/pkg/debug"
-	"github.com/gopasspw/gopass/pkg/termio"
+	"github.com/itsonlycode/gosecret/pkg/ctxutil"
+	"github.com/itsonlycode/gosecret/pkg/debug"
+	"github.com/itsonlycode/gosecret/pkg/termio"
 
 	"github.com/urfave/cli/v2"
 )
@@ -23,7 +23,7 @@ func (s *Action) Delete(c *cli.Context) error {
 	}
 
 	if !recursive && s.Store.IsDir(ctx, name) && !s.Store.Exists(ctx, name) {
-		return ExitError(ExitUsage, nil, "Cannot remove %q: Is a directory. Use 'gopass rm -r %s' to delete", name, name)
+		return ExitError(ExitUsage, nil, "Cannot remove %q: Is a directory. Use 'gosecret rm -r %s' to delete", name, name)
 	}
 
 	// specifying a key is optional

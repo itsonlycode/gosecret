@@ -7,7 +7,7 @@ import (
 	"testing"
 
 	"github.com/gokyle/twofactor"
-	"github.com/gopasspw/gopass/pkg/gopass/secrets/secparse"
+	"github.com/itsonlycode/gosecret/pkg/gosecret/secrets/secparse"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 )
@@ -35,7 +35,7 @@ func TestCalculate(t *testing.T) {
 }
 
 func TestWrite(t *testing.T) {
-	td, err := os.MkdirTemp("", "gopass-")
+	td, err := os.MkdirTemp("", "gosecret-")
 	assert.NoError(t, err)
 	defer func() {
 		os.RemoveAll(td)

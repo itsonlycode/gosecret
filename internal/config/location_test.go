@@ -9,9 +9,9 @@ import (
 
 func TestPwStoreDirNoEnv(t *testing.T) {
 	for in, out := range map[string]string{
-		"":                          filepath.Join(Homedir(), ".local", "share", "gopass", "stores", "root"),
-		"work":                      filepath.Join(Homedir(), ".local", "share", "gopass", "stores", "work"),
-		filepath.Join("foo", "bar"): filepath.Join(Homedir(), ".local", "share", "gopass", "stores", "foo-bar"),
+		"":                          filepath.Join(Homedir(), ".local", "share", "gosecret", "stores", "root"),
+		"work":                      filepath.Join(Homedir(), ".local", "share", "gosecret", "stores", "work"),
+		filepath.Join("foo", "bar"): filepath.Join(Homedir(), ".local", "share", "gosecret", "stores", "foo-bar"),
 	} {
 		assert.Equal(t, out, PwStoreDir(in))
 	}

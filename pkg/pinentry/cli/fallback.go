@@ -3,7 +3,7 @@ package cli
 import (
 	"context"
 
-	"github.com/gopasspw/gopass/pkg/termio"
+	"github.com/itsonlycode/gosecret/pkg/termio"
 )
 
 // Client is pinentry CLI drop-in

@@ -3,18 +3,18 @@ package leaf
 import (
 	"context"
 
-	"github.com/gopasspw/gopass/pkg/ctxutil"
-	"github.com/gopasspw/gopass/pkg/gopass/secrets"
+	"github.com/itsonlycode/gosecret/pkg/ctxutil"
+	"github.com/itsonlycode/gosecret/pkg/gosecret/secrets"
 
-	"github.com/gopasspw/gopass/internal/out"
-	"github.com/gopasspw/gopass/internal/store"
-	"github.com/gopasspw/gopass/pkg/debug"
-	"github.com/gopasspw/gopass/pkg/gopass"
-	"github.com/gopasspw/gopass/pkg/gopass/secrets/secparse"
+	"github.com/itsonlycode/gosecret/internal/out"
+	"github.com/itsonlycode/gosecret/internal/store"
+	"github.com/itsonlycode/gosecret/pkg/debug"
+	"github.com/itsonlycode/gosecret/pkg/gosecret"
+	"github.com/itsonlycode/gosecret/pkg/gosecret/secrets/secparse"
 )
 
 // Get returns the plaintext of a single key
-func (s *Store) Get(ctx context.Context, name string) (gopass.Secret, error) {
+func (s *Store) Get(ctx context.Context, name string) (gosecret.Secret, error) {
 	p := s.passfile(name)
 
 	ciphertext, err := s.storage.Get(ctx, p)

@@ -9,13 +9,13 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/gopasspw/gopass/internal/backend"
-	"github.com/gopasspw/gopass/internal/notify"
-	"github.com/gopasspw/gopass/internal/out"
-	"github.com/gopasspw/gopass/pkg/ctxutil"
-	"github.com/gopasspw/gopass/pkg/debug"
-	"github.com/gopasspw/gopass/pkg/gopass"
-	"github.com/gopasspw/gopass/pkg/termio"
+	"github.com/itsonlycode/gosecret/internal/backend"
+	"github.com/itsonlycode/gosecret/internal/notify"
+	"github.com/itsonlycode/gosecret/internal/out"
+	"github.com/itsonlycode/gosecret/pkg/ctxutil"
+	"github.com/itsonlycode/gosecret/pkg/debug"
+	"github.com/itsonlycode/gosecret/pkg/gosecret"
+	"github.com/itsonlycode/gosecret/pkg/termio"
 	"github.com/nbutton23/zxcvbn-go"
 
 	"github.com/fatih/color"
@@ -37,11 +37,11 @@ type auditedSecret struct {
 }
 
 type secretGetter interface {
-	Get(context.Context, string) (gopass.Secret, error)
+	Get(context.Context, string) (gosecret.Secret, error)
 	ListRevisions(context.Context, string) ([]backend.Revision, error)
 }
 
-type validator func(string, gopass.Secret) error
+type validator func(string, gosecret.Secret) error
 
 // Batch runs a password strength audit on multiple secrets
 func Batch(ctx context.Context, secrets []string, secStore secretGetter) error {
@@ -56,10 +56,10 @@ func Batch(ctx context.Context, secrets []string, secStore secretGetter) error {
 	// Spawn workers that run the auditing of all secrets concurrently.
 	cv := crunchy.NewValidator()
 	validators := []validator{
-		func(_ string, sec gopass.Secret) error {
+		func(_ string, sec gosecret.Secret) error {
 			return cv.Check(sec.Password())
 		},
-		func(name string, sec gopass.Secret) error {
+		func(name string, sec gosecret.Secret) error {
 			ui := make([]string, 0, len(sec.Keys())+1)
 			for _, k := range sec.Keys() {
 				pw, found := sec.Get(k)
@@ -75,7 +75,7 @@ func Batch(ctx context.Context, secrets []string, secStore secretGetter) error {
 			}
 			return nil
 		},
-		func(name string, sec gopass.Secret) error {
+		func(name string, sec gosecret.Secret) error {
 			if name == sec.Password() {
 				return fmt.Errorf("password equals name")
 			}
@@ -87,7 +87,7 @@ func Batch(ctx context.Context, secrets []string, secStore secretGetter) error {
 	// runtime.NumCPU(), but sadly this causes various problems with multiple
 	// gnupg jobs running in parallel. See the entire discussion here:
 	//
-	// https://github.com/gopasspw/gopass/pull/245
+	// https://github.com/itsonlycode/gosecret/pull/245
 
 	maxJobs := 1 // do not change
 	done := make(chan struct{}, maxJobs)
@@ -198,7 +198,7 @@ func audit(ctx context.Context, secStore secretGetter, validators []validator, s
 	done <- struct{}{}
 }
 
-func allValid(vs []validator, name string, sec gopass.Secret) []error {
+func allValid(vs []validator, name string, sec gosecret.Secret) []error {
 	errs := make([]error, 0, len(vs))
 	for _, v := range vs {
 		if err := v(name, sec); err != nil {
@@ -253,10 +253,10 @@ func auditPrintResults(ctx context.Context, duplicates, messages, errors map[str
 	foundErrors := printAuditResults(errors, "%s:\n", color.RedString)
 
 	if foundWeakPasswords || foundDuplicates || foundErrors {
-		_ = notify.Notify(ctx, "gopass - audit", "Finished. Found weak passwords and/or duplicates")
+		_ = notify.Notify(ctx, "gosecret - audit", "Finished. Found weak passwords and/or duplicates")
 		return fmt.Errorf("found weak passwords or duplicates")
 	}
 
-	_ = notify.Notify(ctx, "gopass - audit", "Finished. No weak passwords or duplicates found!")
+	_ = notify.Notify(ctx, "gosecret - audit", "Finished. No weak passwords or duplicates found!")
 	return nil
 }

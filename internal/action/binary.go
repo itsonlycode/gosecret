@@ -10,12 +10,12 @@ import (
 	"os"
 	"path/filepath"
 
-	"github.com/gopasspw/gopass/internal/out"
-	"github.com/gopasspw/gopass/pkg/ctxutil"
-	"github.com/gopasspw/gopass/pkg/debug"
-	"github.com/gopasspw/gopass/pkg/fsutil"
-	"github.com/gopasspw/gopass/pkg/gopass"
-	"github.com/gopasspw/gopass/pkg/gopass/secrets"
+	"github.com/itsonlycode/gosecret/internal/out"
+	"github.com/itsonlycode/gosecret/pkg/ctxutil"
+	"github.com/itsonlycode/gosecret/pkg/debug"
+	"github.com/itsonlycode/gosecret/pkg/fsutil"
+	"github.com/itsonlycode/gosecret/pkg/gosecret"
+	"github.com/itsonlycode/gosecret/pkg/gosecret/secrets"
 
 	"github.com/urfave/cli/v2"
 )
@@ -63,7 +63,7 @@ func (s *Action) Cat(c *cli.Context) error {
 	return nil
 }
 
-func secFromBytes(dst, src string, in []byte) gopass.Secret {
+func secFromBytes(dst, src string, in []byte) gosecret.Secret {
 	debug.Log("Read %d bytes from %s to %s", len(in), src, dst)
 
 	sec := secrets.NewKV()

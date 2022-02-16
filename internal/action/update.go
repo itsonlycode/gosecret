@@ -4,9 +4,9 @@ import (
 	"fmt"
 	"runtime"
 
-	"github.com/gopasspw/gopass/internal/out"
-	"github.com/gopasspw/gopass/internal/updater"
-	"github.com/gopasspw/gopass/pkg/ctxutil"
+	"github.com/itsonlycode/gosecret/internal/out"
+	"github.com/itsonlycode/gosecret/internal/updater"
+	"github.com/itsonlycode/gosecret/pkg/ctxutil"
 
 	"github.com/urfave/cli/v2"
 )
@@ -23,14 +23,14 @@ func (s *Action) Update(c *cli.Context) error {
 	}
 
 	if runtime.GOOS == "windows" {
-		return fmt.Errorf("gopass update is not supported on windows (#1722)")
+		return fmt.Errorf("gosecret update is not supported on windows (#1722)")
 	}
 
 	out.Printf(ctx, "⚒ Checking for available updates ...")
 	if err := updater.Update(ctx, s.version); err != nil {
-		return ExitError(ExitUnknown, err, "Failed to update gopass: %s", err)
+		return ExitError(ExitUnknown, err, "Failed to update gosecret: %s", err)
 	}
 
-	out.OKf(ctx, "gopass is up to date")
+	out.OKf(ctx, "gosecret is up to date")
 	return nil
 }

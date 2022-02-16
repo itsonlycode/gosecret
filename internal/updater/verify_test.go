@@ -24,7 +24,7 @@ WubSpxPm
 -----END PGP SIGNATURE-----
 `)
 
-var testData = []byte(`gopass-sign-test
+var testData = []byte(`gosecret-sign-test
 `)
 
 func TestGPGVerify(t *testing.T) {

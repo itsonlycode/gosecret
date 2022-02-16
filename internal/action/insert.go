@@ -6,14 +6,14 @@ import (
 	"fmt"
 	"io"
 
-	"github.com/gopasspw/gopass/internal/audit"
-	"github.com/gopasspw/gopass/internal/editor"
-	"github.com/gopasspw/gopass/internal/out"
-	"github.com/gopasspw/gopass/pkg/ctxutil"
-	"github.com/gopasspw/gopass/pkg/debug"
-	"github.com/gopasspw/gopass/pkg/gopass"
-	"github.com/gopasspw/gopass/pkg/gopass/secrets"
-	"github.com/gopasspw/gopass/pkg/termio"
+	"github.com/itsonlycode/gosecret/internal/audit"
+	"github.com/itsonlycode/gosecret/internal/editor"
+	"github.com/itsonlycode/gosecret/internal/out"
+	"github.com/itsonlycode/gosecret/pkg/ctxutil"
+	"github.com/itsonlycode/gosecret/pkg/debug"
+	"github.com/itsonlycode/gosecret/pkg/gosecret"
+	"github.com/itsonlycode/gosecret/pkg/gosecret/secrets"
+	"github.com/itsonlycode/gosecret/pkg/termio"
 
 	"github.com/urfave/cli/v2"
 )
@@ -89,7 +89,7 @@ func (s *Action) insert(ctx context.Context, c *cli.Context, name, key string, e
 }
 
 func (s *Action) insertStdin(ctx context.Context, name string, content []byte, appendTo bool) error {
-	var sec gopass.Secret
+	var sec gosecret.Secret
 	if appendTo && s.Store.Exists(ctx, name) {
 		eSec, err := s.Store.Get(ctx, name)
 		if err != nil {
@@ -123,7 +123,7 @@ func (s *Action) insertStdin(ctx context.Context, name string, content []byte, a
 }
 
 func (s *Action) insertSingle(ctx context.Context, name, pw string, kvps map[string]string) error {
-	var sec gopass.Secret
+	var sec gosecret.Secret
 	sec = secrets.New()
 	if s.Store.Exists(ctx, name) {
 		gs, err := s.Store.Get(ctx, name)
@@ -165,7 +165,7 @@ func (s *Action) insertYAML(ctx context.Context, name, key string, content []byt
 		content = []byte(pw)
 	}
 
-	var sec gopass.Secret
+	var sec gosecret.Secret
 	if s.Store.Exists(ctx, name) {
 		var err error
 		sec, err = s.Store.Get(ctx, name)

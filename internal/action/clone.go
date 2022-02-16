@@ -5,14 +5,14 @@ import (
 	"os"
 	"path/filepath"
 
-	"github.com/gopasspw/gopass/internal/backend"
-	"github.com/gopasspw/gopass/internal/config"
-	"github.com/gopasspw/gopass/internal/cui"
-	"github.com/gopasspw/gopass/internal/out"
-	"github.com/gopasspw/gopass/pkg/ctxutil"
-	"github.com/gopasspw/gopass/pkg/debug"
-	"github.com/gopasspw/gopass/pkg/fsutil"
-	"github.com/gopasspw/gopass/pkg/termio"
+	"github.com/itsonlycode/gosecret/internal/backend"
+	"github.com/itsonlycode/gosecret/internal/config"
+	"github.com/itsonlycode/gosecret/internal/cui"
+	"github.com/itsonlycode/gosecret/internal/out"
+	"github.com/itsonlycode/gosecret/pkg/ctxutil"
+	"github.com/itsonlycode/gosecret/pkg/debug"
+	"github.com/itsonlycode/gosecret/pkg/fsutil"
+	"github.com/itsonlycode/gosecret/pkg/termio"
 
 	"github.com/urfave/cli/v2"
 )
@@ -29,7 +29,7 @@ func (s *Action) Clone(c *cli.Context) error {
 		return ExitError(ExitUsage, nil, "Usage: %s clone repo [mount]", s.Name)
 	}
 
-	// gopass clone [--crypto=foo] [--path=/some/store] git://foo/bar team0
+	// gosecret clone [--crypto=foo] [--path=/some/store] git://foo/bar team0
 	repo := c.Args().Get(0)
 	mount := ""
 	if c.Args().Len() > 1 {
@@ -37,7 +37,7 @@ func (s *Action) Clone(c *cli.Context) error {
 	}
 
 	out.Printf(ctx, logo)
-	out.Printf(ctx, "🌟 Welcome to gopass!")
+	out.Printf(ctx, "🌟 Welcome to gosecret!")
 	out.Printf(ctx, "🌟 Cloning an existing password store from %q ...", repo)
 
 	return s.clone(ctx, repo, mount, path)

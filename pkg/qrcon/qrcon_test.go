@@ -16,6 +16,6 @@ func ExampleQRCode() {
 }
 
 func TestQRCode(t *testing.T) {
-	_, err := QRCode("https://www.gopass.pw/")
+	_, err := QRCode("https://www.gosecret.pw/")
 	assert.NoError(t, err)
 }

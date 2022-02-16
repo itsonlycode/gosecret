@@ -12,11 +12,11 @@ import (
 	"runtime"
 	"strings"
 
-	"github.com/gopasspw/gopass/internal/out"
-	"github.com/gopasspw/gopass/pkg/ctxutil"
-	"github.com/gopasspw/gopass/pkg/debug"
-	"github.com/gopasspw/gopass/pkg/fsutil"
-	"github.com/gopasspw/gopass/pkg/tempfile"
+	"github.com/itsonlycode/gosecret/internal/out"
+	"github.com/itsonlycode/gosecret/pkg/ctxutil"
+	"github.com/itsonlycode/gosecret/pkg/debug"
+	"github.com/itsonlycode/gosecret/pkg/fsutil"
+	"github.com/itsonlycode/gosecret/pkg/tempfile"
 
 	"github.com/fatih/color"
 	shellquote "github.com/kballard/go-shellquote"
@@ -29,7 +29,7 @@ var (
 	Stdout io.Writer = os.Stdout
 	// Stderr is exported for tests
 	Stderr    io.Writer = os.Stderr
-	vimOptsRe           = regexp.MustCompile(`au\s+BufNewFile,BufRead\s+.*gopass.*setlocal\s+noswapfile\s+nobackup\s+noundofile`)
+	vimOptsRe           = regexp.MustCompile(`au\s+BufNewFile,BufRead\s+.*gosecret.*setlocal\s+noswapfile\s+nobackup\s+noundofile`)
 )
 
 // Check will validate the editor config
@@ -57,7 +57,7 @@ func Check(ctx context.Context, editor string) error {
 		return nil
 	}
 	debug.Log("%s did not match %s", string(buf), vimOptsRe)
-	out.Warningf(ctx, "Vim might leak credentials. Check your setup.\nhttps://github.com/gopasspw/gopass/blob/master/docs/setup.md#securing-your-editor")
+	out.Warningf(ctx, "Vim might leak credentials. Check your setup.\nhttps://github.com/itsonlycode/gosecret/blob/master/docs/setup.md#securing-your-editor")
 	return nil
 }
 
@@ -67,7 +67,7 @@ func Invoke(ctx context.Context, editor string, content []byte) ([]byte, error) 
 		return nil, fmt.Errorf("need terminal")
 	}
 
-	tmpfile, err := tempfile.New(ctx, "gopass-edit")
+	tmpfile, err := tempfile.New(ctx, "gosecret-edit")
 	if err != nil {
 		return []byte{}, fmt.Errorf("failed to create tmpfile %s: %w", editor, err)
 	}

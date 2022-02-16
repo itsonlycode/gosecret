@@ -6,12 +6,12 @@ import (
 	"os"
 	"testing"
 
-	"github.com/gopasspw/gopass/internal/out"
-	"github.com/gopasspw/gopass/pkg/ctxutil"
-	"github.com/gopasspw/gopass/tests/gptest"
+	"github.com/itsonlycode/gosecret/internal/out"
+	"github.com/itsonlycode/gosecret/pkg/ctxutil"
+	"github.com/itsonlycode/gosecret/tests/gptest"
 
-	_ "github.com/gopasspw/gopass/internal/backend/crypto"
-	_ "github.com/gopasspw/gopass/internal/backend/storage"
+	_ "github.com/itsonlycode/gosecret/internal/backend/crypto"
+	_ "github.com/itsonlycode/gosecret/internal/backend/storage"
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
@@ -38,7 +38,7 @@ func TestVersion(t *testing.T) {
 	}()
 
 	cli.VersionPrinter = func(*cli.Context) {
-		out.Printf(ctx, "gopass version 0.0.0-test")
+		out.Printf(ctx, "gosecret version 0.0.0-test")
 	}
 
 	t.Run("print fixed version", func(t *testing.T) {

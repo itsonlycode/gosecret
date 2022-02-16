@@ -13,12 +13,12 @@ import (
 	"strconv"
 	"syscall"
 
-	"github.com/gopasspw/gopass/pkg/ctxutil"
+	"github.com/itsonlycode/gosecret/pkg/ctxutil"
 )
 
-// clear will spwan a copy of gopass that waits in a detached background
+// clear will spwan a copy of gosecret that waits in a detached background
 // process group until the timeout is expired. It will then compare the contents
-// of the clipboard and erase it if it still contains the data gopass copied
+// of the clipboard and erase it if it still contains the data gosecret copied
 // to it.
 func clear(ctx context.Context, content []byte, timeout int) error {
 	hash := fmt.Sprintf("%x", sha256.Sum256(content))
@@ -45,12 +45,12 @@ func walkFn(pid int, killFn func(int)) {
 		return
 	}
 	// compare the name of the binary and the first argument to avoid killing
-	// any unrelated (gopass) processes
+	// any unrelated (gosecret) processes
 	args := bytes.Split(cmdline, []byte{0})
 	if len(args) < 2 {
 		return
 	}
-	// the commandline should start with "gopass"
+	// the commandline should start with "gosecret"
 	if string(args[0]) != os.Args[0] {
 		return
 	}

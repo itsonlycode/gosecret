@@ -5,9 +5,9 @@ import (
 	"path/filepath"
 	"strings"
 
-	"github.com/gopasspw/gopass/pkg/appdir"
-	"github.com/gopasspw/gopass/pkg/debug"
-	"github.com/gopasspw/gopass/pkg/fsutil"
+	"github.com/itsonlycode/gosecret/pkg/appdir"
+	"github.com/itsonlycode/gosecret/pkg/debug"
+	"github.com/itsonlycode/gosecret/pkg/fsutil"
 
 	homedir "github.com/mitchellh/go-homedir"
 )
@@ -39,7 +39,7 @@ func configLocation() string {
 	return filepath.Join(appdir.UserConfig(), "config.yml")
 }
 
-// configLocations returns the possible locations of gopass config files,
+// configLocations returns the possible locations of gosecret config files,
 // in decreasing priority
 func configLocations() []string {
 	l := []string{}
@@ -47,8 +47,8 @@ func configLocations() []string {
 		l = append(l, cf)
 	}
 	l = append(l, filepath.Join(appdir.UserConfig(), "config.yml"))
-	l = append(l, filepath.Join(Homedir(), ".config", "gopass", "config.yml"))
-	l = append(l, filepath.Join(Homedir(), ".gopass.yml"))
+	l = append(l, filepath.Join(Homedir(), ".config", "gosecret", "config.yml"))
+	l = append(l, filepath.Join(Homedir(), ".gosecret.yml"))
 	return l
 }
 
@@ -70,7 +70,7 @@ func PwStoreDir(mount string) string {
 	return fsutil.CleanPath(filepath.Join(appdir.UserData(), "stores", "root"))
 }
 
-// Directory returns the configuration directory for the gopass config file
+// Directory returns the configuration directory for the gosecret config file
 func Directory() string {
 	return filepath.Dir(configLocation())
 }

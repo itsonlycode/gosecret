@@ -4,12 +4,12 @@ import (
 	"context"
 	"fmt"
 
-	"github.com/gopasspw/gopass/internal/backend"
-	"github.com/gopasspw/gopass/internal/backend/crypto/plain"
-	"github.com/gopasspw/gopass/internal/store/mockstore/inmem"
-	"github.com/gopasspw/gopass/internal/tree"
-	"github.com/gopasspw/gopass/pkg/gopass"
-	"github.com/gopasspw/gopass/pkg/gopass/secrets/secparse"
+	"github.com/itsonlycode/gosecret/internal/backend"
+	"github.com/itsonlycode/gosecret/internal/backend/crypto/plain"
+	"github.com/itsonlycode/gosecret/internal/store/mockstore/inmem"
+	"github.com/itsonlycode/gosecret/internal/tree"
+	"github.com/itsonlycode/gosecret/pkg/gosecret"
+	"github.com/itsonlycode/gosecret/pkg/gosecret/secrets/secparse"
 )
 
 // MockStore is an mocked store
@@ -161,7 +161,7 @@ func (m *MockStore) Exists(ctx context.Context, name string) bool {
 }
 
 // Get does nothing
-func (m *MockStore) Get(ctx context.Context, name string) (gopass.Secret, error) {
+func (m *MockStore) Get(ctx context.Context, name string) (gosecret.Secret, error) {
 	content, err := m.storage.Get(ctx, name)
 	if err != nil {
 		return nil, err
@@ -170,7 +170,7 @@ func (m *MockStore) Get(ctx context.Context, name string) (gopass.Secret, error)
 }
 
 // GetRevision does nothing
-func (m *MockStore) GetRevision(context.Context, string, string) (gopass.Secret, error) {
+func (m *MockStore) GetRevision(context.Context, string, string) (gosecret.Secret, error) {
 	return nil, fmt.Errorf("not supported")
 }
 
@@ -207,7 +207,7 @@ func (m *MockStore) Move(ctx context.Context, from string, to string) error {
 }
 
 // Set does nothing
-func (m *MockStore) Set(ctx context.Context, name string, sec gopass.Byter) error {
+func (m *MockStore) Set(ctx context.Context, name string, sec gosecret.Byter) error {
 	return m.storage.Set(ctx, name, sec.Bytes())
 }
 

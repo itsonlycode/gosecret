@@ -8,16 +8,16 @@ import (
 	"strings"
 
 	"github.com/fatih/color"
-	"github.com/gopasspw/gopass/internal/cui"
-	"github.com/gopasspw/gopass/internal/out"
-	"github.com/gopasspw/gopass/pkg/clipboard"
-	"github.com/gopasspw/gopass/pkg/ctxutil"
-	"github.com/gopasspw/gopass/pkg/debug"
-	"github.com/gopasspw/gopass/pkg/fsutil"
-	"github.com/gopasspw/gopass/pkg/gopass/secrets"
-	"github.com/gopasspw/gopass/pkg/pwgen"
-	"github.com/gopasspw/gopass/pkg/pwgen/pwrules"
-	"github.com/gopasspw/gopass/pkg/termio"
+	"github.com/itsonlycode/gosecret/internal/cui"
+	"github.com/itsonlycode/gosecret/internal/out"
+	"github.com/itsonlycode/gosecret/pkg/clipboard"
+	"github.com/itsonlycode/gosecret/pkg/ctxutil"
+	"github.com/itsonlycode/gosecret/pkg/debug"
+	"github.com/itsonlycode/gosecret/pkg/fsutil"
+	"github.com/itsonlycode/gosecret/pkg/gosecret/secrets"
+	"github.com/itsonlycode/gosecret/pkg/pwgen"
+	"github.com/itsonlycode/gosecret/pkg/pwgen/pwrules"
+	"github.com/itsonlycode/gosecret/pkg/termio"
 	"github.com/martinhoefling/goxkcdpwgen/xkcdpwgen"
 	"github.com/urfave/cli/v2"
 )
@@ -34,8 +34,8 @@ func fmtfn(d int, n string, t string) string {
 func (s *Action) Create(c *cli.Context) error {
 	ctx := ctxutil.WithGlobalFlags(c)
 
-	out.Printf(ctx, "🌟 Welcome to the secret creation wizard (gopass create)!")
-	out.Printf(ctx, "🧪 Hint: Use 'gopass edit -c' for more control!")
+	out.Printf(ctx, "🌟 Welcome to the secret creation wizard (gosecret create)!")
+	out.Printf(ctx, "🧪 Hint: Use 'gosecret edit -c' for more control!")
 
 	acts := make(cui.Actions, 0, 5)
 	acts = append(acts, cui.Action{Name: "Website Login", Fn: s.createWebsite})
@@ -88,7 +88,7 @@ func (s *Action) createWebsite(ctx context.Context, c *cli.Context) error {
 	// the hostname is used as part of the name
 	hostname := extractHostname(urlStr)
 	if hostname == "" {
-		return ExitError(ExitUnknown, err, "Can not parse URL %q. Please use 'gopass edit' to manually create the secret", urlStr)
+		return ExitError(ExitUnknown, err, "Can not parse URL %q. Please use 'gosecret edit' to manually create the secret", urlStr)
 	}
 
 	username, err := termio.AskForString(ctx, fmtfn(2, "2", "Login"), "")

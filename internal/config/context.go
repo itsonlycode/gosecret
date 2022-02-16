@@ -3,7 +3,7 @@ package config
 import (
 	"context"
 
-	"github.com/gopasspw/gopass/pkg/ctxutil"
+	"github.com/itsonlycode/gosecret/pkg/ctxutil"
 )
 
 // WithContext returns a context with all config options set for this store

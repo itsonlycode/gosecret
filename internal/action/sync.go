@@ -5,14 +5,14 @@ import (
 	"errors"
 	"fmt"
 
-	"github.com/gopasspw/gopass/internal/tree"
+	"github.com/itsonlycode/gosecret/internal/tree"
 
-	"github.com/gopasspw/gopass/internal/diff"
-	"github.com/gopasspw/gopass/internal/notify"
-	"github.com/gopasspw/gopass/internal/out"
-	"github.com/gopasspw/gopass/internal/store"
-	"github.com/gopasspw/gopass/pkg/ctxutil"
-	"github.com/gopasspw/gopass/pkg/debug"
+	"github.com/itsonlycode/gosecret/internal/diff"
+	"github.com/itsonlycode/gosecret/internal/notify"
+	"github.com/itsonlycode/gosecret/internal/out"
+	"github.com/itsonlycode/gosecret/internal/store"
+	"github.com/itsonlycode/gosecret/pkg/ctxutil"
+	"github.com/itsonlycode/gosecret/pkg/debug"
 
 	"github.com/fatih/color"
 	"github.com/urfave/cli/v2"
@@ -63,7 +63,7 @@ func (s *Action) sync(ctx context.Context, store string) error {
 	} else if numEntries < 0 {
 		diff = fmt.Sprintf(" Removed %d entries", -1*numEntries)
 	}
-	_ = notify.Notify(ctx, "gopass - sync", fmt.Sprintf("Finished. Synced %d remotes.%s", numMPs, diff))
+	_ = notify.Notify(ctx, "gosecret - sync", fmt.Sprintf("Finished. Synced %d remotes.%s", numMPs, diff))
 
 	return nil
 }

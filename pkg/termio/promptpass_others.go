@@ -11,8 +11,8 @@ import (
 
 	"golang.org/x/term"
 
-	"github.com/gopasspw/gopass/internal/out"
-	"github.com/gopasspw/gopass/pkg/ctxutil"
+	"github.com/itsonlycode/gosecret/internal/out"
+	"github.com/itsonlycode/gosecret/pkg/ctxutil"
 )
 
 // promptPass will prompt user's for a password by terminal.

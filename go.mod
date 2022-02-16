@@ -1,4 +1,4 @@
-module github.com/gopasspw/gopass
+module github.com/itsonlycode/gopass
 
 go 1.16
 
@@ -24,6 +24,7 @@ require (
 	github.com/hashicorp/errwrap v1.1.0 // indirect
 	github.com/hashicorp/go-multierror v1.1.1
 	github.com/hashicorp/golang-lru v0.5.4
+	github.com/itsonlycode/pinentry v0.0.3 // indirect
 	github.com/jsimonetti/pwscheme v0.0.0-20160922125227-76804708ecad
 	github.com/kballard/go-shellquote v0.0.0-20180428030007-95032a82bc51
 	github.com/kr/pretty v0.3.0 // indirect

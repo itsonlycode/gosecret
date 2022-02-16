@@ -6,9 +6,9 @@ import (
 	"path/filepath"
 	"testing"
 
-	"github.com/gopasspw/gopass/pkg/ctxutil"
-	"github.com/gopasspw/gopass/pkg/debug"
-	"github.com/gopasspw/gopass/tests/gptest"
+	"github.com/itsonlycode/gosecret/pkg/ctxutil"
+	"github.com/itsonlycode/gosecret/pkg/debug"
+	"github.com/itsonlycode/gosecret/tests/gptest"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 )
@@ -19,7 +19,7 @@ func TestDetectStorage(t *testing.T) {
 	uv := gptest.UnsetVars("GOPASS_HOMEDIR")
 	defer uv()
 
-	td, err := os.MkdirTemp("", "gopass-")
+	td, err := os.MkdirTemp("", "gosecret-")
 	require.NoError(t, err)
 	defer func() {
 		_ = os.RemoveAll(td)
@@ -29,7 +29,7 @@ func TestDetectStorage(t *testing.T) {
 	os.Setenv("GOPASS_HOMEDIR", td)
 	ctx = ctxutil.WithPasswordCallback(ctx, func(_ string, _ bool) ([]byte, error) {
 		debug.Log("static test password callback")
-		return []byte("gopass"), nil
+		return []byte("gosecret"), nil
 	})
 
 	fsDir := filepath.Join(td, "fs")

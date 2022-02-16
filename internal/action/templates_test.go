@@ -6,12 +6,12 @@ import (
 	"os"
 	"testing"
 
-	"github.com/gopasspw/gopass/internal/out"
-	"github.com/gopasspw/gopass/pkg/ctxutil"
-	"github.com/gopasspw/gopass/tests/gptest"
+	"github.com/itsonlycode/gosecret/internal/out"
+	"github.com/itsonlycode/gosecret/pkg/ctxutil"
+	"github.com/itsonlycode/gosecret/tests/gptest"
 
-	_ "github.com/gopasspw/gopass/internal/backend/crypto"
-	_ "github.com/gopasspw/gopass/internal/backend/storage"
+	_ "github.com/itsonlycode/gosecret/internal/backend/crypto"
+	_ "github.com/itsonlycode/gosecret/internal/backend/storage"
 
 	"github.com/fatih/color"
 	"github.com/stretchr/testify/assert"
@@ -42,14 +42,14 @@ func TestTemplates(t *testing.T) {
 	t.Run("display empty template tree", func(t *testing.T) {
 		defer buf.Reset()
 		assert.NoError(t, act.TemplatesPrint(gptest.CliCtx(ctx, t, "foo")))
-		assert.Equal(t, "gopass\n\n", buf.String())
+		assert.Equal(t, "gosecret\n\n", buf.String())
 	})
 
 	t.Run("add template", func(t *testing.T) {
 		defer buf.Reset()
 		assert.NoError(t, act.Store.SetTemplate(ctx, "foo", []byte("foobar")))
 		assert.NoError(t, act.TemplatesPrint(gptest.CliCtx(ctx, t, "foo")))
-		want := `gopass
+		want := `gosecret
 └── foo
 
 `

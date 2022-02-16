@@ -8,18 +8,18 @@ import (
 	"time"
 
 	"github.com/blang/semver/v4"
-	"github.com/gopasspw/gopass/internal/backend"
-	"github.com/gopasspw/gopass/internal/out"
-	"github.com/gopasspw/gopass/internal/updater"
-	"github.com/gopasspw/gopass/pkg/ctxutil"
-	"github.com/gopasspw/gopass/pkg/debug"
-	"github.com/gopasspw/gopass/pkg/protect"
+	"github.com/itsonlycode/gosecret/internal/backend"
+	"github.com/itsonlycode/gosecret/internal/out"
+	"github.com/itsonlycode/gosecret/internal/updater"
+	"github.com/itsonlycode/gosecret/pkg/ctxutil"
+	"github.com/itsonlycode/gosecret/pkg/debug"
+	"github.com/itsonlycode/gosecret/pkg/protect"
 
 	"github.com/fatih/color"
 	"github.com/urfave/cli/v2"
 )
 
-// Version prints the gopass version
+// Version prints the gosecret version
 func (s *Action) Version(c *cli.Context) error {
 	ctx := ctxutil.WithGlobalFlags(c)
 	version := make(chan string, 1)
@@ -106,16 +106,16 @@ func (s *Action) checkVersion(ctx context.Context, u chan string) {
 	}
 
 	if s.version.LT(r.Version) {
-		notice := fmt.Sprintf("\nYour version (%s) of gopass is out of date!\nThe latest version is %s.\n", s.version, r.Version.String())
-		notice += "You can update by downloading from https://www.gopass.pw/#install"
+		notice := fmt.Sprintf("\nYour version (%s) of gosecret is out of date!\nThe latest version is %s.\n", s.version, r.Version.String())
+		notice += "You can update by downloading from https://www.gosecret.pw/#install"
 		if err := updater.IsUpdateable(ctx); err == nil {
-			notice += " by running 'gopass update'"
+			notice += " by running 'gosecret update'"
 		}
 		notice += " or via your package manager"
 		u <- color.YellowString(notice)
 	} else {
 		s.rem.Reset("update")
-		debug.Log("gopass is up-to-date (local: %q, GitHub: %q)", s.version, r.Version)
+		debug.Log("gosecret is up-to-date (local: %q, GitHub: %q)", s.version, r.Version)
 	}
 	u <- ""
 }

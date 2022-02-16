@@ -1,4 +1,4 @@
-// Copyright 2021 The gopass Authors. All rights reserved.
+// Copyright 2021 The gosecret Authors. All rights reserved.
 // Use of this source code is governed by the MIT license,
 // that can be found in the LICENSE file.
 
@@ -15,9 +15,9 @@ import (
 	"time"
 
 	"github.com/blang/semver/v4"
-	ap "github.com/gopasspw/gopass/internal/action"
-	"github.com/gopasspw/gopass/internal/action/pwgen"
-	"github.com/gopasspw/gopass/internal/config"
+	ap "github.com/gosecretpw/gosecret/internal/action"
+	"github.com/gosecretpw/gosecret/internal/action/pwgen"
+	"github.com/gosecretpw/gosecret/internal/config"
 	"github.com/urfave/cli/v2"
 )
 
@@ -98,11 +98,11 @@ type payload struct {
 }
 
 var manTpl = `
-.TH GOPASS "{{ .SectionNumber }}" "{{ .DatePretty }}" "gopass (github.com/gopasspw/gopass) {{ .Version }}" "{{ .SectionName }}"
+.TH GOPASS "{{ .SectionNumber }}" "{{ .DatePretty }}" "gosecret (github.com/gosecretpw/gosecret) {{ .Version }}" "{{ .SectionName }}"
 .SH NAME
-gopass - The standard Unix password manager
+gosecret - The standard Unix password manager
 .SH SYNOPSIS
-.B gopass
+.B gosecret
 [\fI\,global options\/\fR] \fI\,command\/\fR [\fI\,command options\/\fR] [\fI,arguments\/\fR...]
 .SH GLOBAL OPTIONS
 {{ range $flag := .Flags }}
@@ -126,7 +126,7 @@ gopass - The standard Unix password manager
 {{- end}}
 
 .SH "REPORTING BUGS"
-Report bugs to <https://github.com/gopasspw/gopass/issues/new>
+Report bugs to <https://github.com/gosecretpw/gosecret/issues/new>
 .SH "COPYRIGHT"
 Copyright \(co 2021 Gopass Authors
 This program is free software; you may redistribute it under the terms of

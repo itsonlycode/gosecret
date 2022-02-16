@@ -4,8 +4,8 @@ import (
 	"context"
 	"testing"
 
-	"github.com/gopasspw/gopass/pkg/ctxutil"
-	"github.com/gopasspw/gopass/tests/gptest"
+	"github.com/itsonlycode/gosecret/pkg/ctxutil"
+	"github.com/itsonlycode/gosecret/tests/gptest"
 
 	"github.com/fatih/color"
 	"github.com/stretchr/testify/assert"
@@ -26,7 +26,7 @@ func TestTemplate(t *testing.T) {
 
 	tt, err := rs.TemplateTree(ctx)
 	require.NoError(t, err)
-	assert.Equal(t, "gopass\n", tt.Format(0))
+	assert.Equal(t, "gosecret\n", tt.Format(0))
 
 	assert.False(t, rs.HasTemplate(ctx, "foo"))
 	_, err = rs.GetTemplate(ctx, "foo")

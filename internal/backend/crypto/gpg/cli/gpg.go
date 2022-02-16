@@ -5,8 +5,8 @@ import (
 	"context"
 	"os"
 
-	"github.com/gopasspw/gopass/internal/backend/crypto/gpg"
-	"github.com/gopasspw/gopass/pkg/debug"
+	"github.com/itsonlycode/gosecret/internal/backend/crypto/gpg"
+	"github.com/itsonlycode/gosecret/pkg/debug"
 	lru "github.com/hashicorp/golang-lru"
 )
 

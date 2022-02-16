@@ -8,9 +8,9 @@ import (
 	"fmt"
 	"strconv"
 
-	"github.com/gopasspw/gopass/internal/action"
-	"github.com/gopasspw/gopass/pkg/pwgen"
-	"github.com/gopasspw/gopass/pkg/pwgen/xkcdgen"
+	"github.com/itsonlycode/gosecret/internal/action"
+	"github.com/itsonlycode/gosecret/pkg/pwgen"
+	"github.com/itsonlycode/gosecret/pkg/pwgen/xkcdgen"
 	"github.com/urfave/cli/v2"
 	"golang.org/x/term"
 )

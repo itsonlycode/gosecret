@@ -9,11 +9,11 @@ import (
 	"strings"
 	"sync"
 
-	"github.com/gopasspw/gopass/internal/out"
-	"github.com/gopasspw/gopass/internal/store"
-	"github.com/gopasspw/gopass/pkg/ctxutil"
-	"github.com/gopasspw/gopass/pkg/debug"
-	"github.com/gopasspw/gopass/pkg/termio"
+	"github.com/itsonlycode/gosecret/internal/out"
+	"github.com/itsonlycode/gosecret/internal/store"
+	"github.com/itsonlycode/gosecret/pkg/ctxutil"
+	"github.com/itsonlycode/gosecret/pkg/debug"
+	"github.com/itsonlycode/gosecret/pkg/termio"
 )
 
 // reencrypt will re-encrypt all entries for the current recipients
@@ -120,13 +120,13 @@ func (s *Store) reencryptGitPush(ctx context.Context) error {
 	if err := s.storage.Push(ctx, "", ""); err != nil {
 		if errors.Is(err, store.ErrGitNotInit) {
 			msg := "Warning: git is not initialized for this.storage. Ignoring auto-push option\n" +
-				"Run: gopass git init"
+				"Run: gosecret git init"
 			debug.Log(msg)
 			return nil
 		}
 		if errors.Is(err, store.ErrGitNoRemote) {
 			msg := "Warning: git has no remote. Ignoring auto-push option\n" +
-				"Run: gopass git remote add origin ..."
+				"Run: gosecret git remote add origin ..."
 			debug.Log(msg)
 			return nil
 		}

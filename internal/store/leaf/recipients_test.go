@@ -10,11 +10,11 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/gopasspw/gopass/internal/backend"
-	plain "github.com/gopasspw/gopass/internal/backend/crypto/plain"
-	"github.com/gopasspw/gopass/internal/backend/storage/fs"
-	"github.com/gopasspw/gopass/internal/out"
-	"github.com/gopasspw/gopass/pkg/ctxutil"
+	"github.com/itsonlycode/gosecret/internal/backend"
+	plain "github.com/itsonlycode/gosecret/internal/backend/crypto/plain"
+	"github.com/itsonlycode/gosecret/internal/backend/storage/fs"
+	"github.com/itsonlycode/gosecret/internal/out"
+	"github.com/itsonlycode/gosecret/pkg/ctxutil"
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
@@ -23,7 +23,7 @@ import (
 func TestGetRecipientsDefault(t *testing.T) {
 	ctx := context.Background()
 
-	tempdir, err := os.MkdirTemp("", "gopass-")
+	tempdir, err := os.MkdirTemp("", "gosecret-")
 	require.NoError(t, err)
 	defer func() {
 		_ = os.RemoveAll(tempdir)
@@ -54,7 +54,7 @@ func TestGetRecipientsDefault(t *testing.T) {
 func TestGetRecipientsSubID(t *testing.T) {
 	ctx := context.Background()
 
-	tempdir, err := os.MkdirTemp("", "gopass-")
+	tempdir, err := os.MkdirTemp("", "gosecret-")
 	require.NoError(t, err)
 	defer func() {
 		_ = os.RemoveAll(tempdir)
@@ -92,7 +92,7 @@ func TestSaveRecipients(t *testing.T) {
 	ctx := context.Background()
 	ctx = ctxutil.WithExportKeys(ctx, true)
 
-	tempdir, err := os.MkdirTemp("", "gopass-")
+	tempdir, err := os.MkdirTemp("", "gosecret-")
 	require.NoError(t, err)
 	defer func() {
 		_ = os.RemoveAll(tempdir)
@@ -145,7 +145,7 @@ func TestAddRecipient(t *testing.T) {
 	ctx := context.Background()
 	ctx = ctxutil.WithHidden(ctx, true)
 
-	tempdir, err := os.MkdirTemp("", "gopass-")
+	tempdir, err := os.MkdirTemp("", "gosecret-")
 	require.NoError(t, err)
 	defer func() {
 		_ = os.RemoveAll(tempdir)
@@ -184,7 +184,7 @@ func TestRemoveRecipient(t *testing.T) {
 	ctx := context.Background()
 	ctx = ctxutil.WithHidden(ctx, true)
 
-	tempdir, err := os.MkdirTemp("", "gopass-")
+	tempdir, err := os.MkdirTemp("", "gosecret-")
 	require.NoError(t, err)
 	defer func() {
 		_ = os.RemoveAll(tempdir)
@@ -216,7 +216,7 @@ func TestRemoveRecipient(t *testing.T) {
 func TestListRecipients(t *testing.T) {
 	ctx := context.Background()
 
-	tempdir, err := os.MkdirTemp("", "gopass-")
+	tempdir, err := os.MkdirTemp("", "gosecret-")
 	require.NoError(t, err)
 	defer func() {
 		_ = os.RemoveAll(tempdir)

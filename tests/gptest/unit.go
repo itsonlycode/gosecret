@@ -11,7 +11,7 @@ import (
 )
 
 const (
-	gopassConfig = `autoclip: true
+	gosecretConfig = `autoclip: true
 autoimport: true
 cliptimeout: 45
 exportkeys: true
@@ -24,7 +24,7 @@ var (
 	defaultRecipients = []string{"0xDEADBEEF"}
 )
 
-// Unit is a gopass unit test helper
+// Unit is a gosecret unit test helper
 type Unit struct {
 	t          *testing.T
 	Entries    []string
@@ -33,12 +33,12 @@ type Unit struct {
 	env        map[string]string
 }
 
-// GPConfig returns the gopass config location
+// GPConfig returns the gosecret config location
 func (u Unit) GPConfig() string {
 	return filepath.Join(u.Dir, "config.yml")
 }
 
-// GPGHome returns the gopass homedir
+// GPGHome returns the gosecret homedir
 func (u Unit) GPGHome() string {
 	return filepath.Join(u.Dir, ".gnupg")
 }
@@ -46,7 +46,7 @@ func (u Unit) GPGHome() string {
 // NewUnitTester creates a new unit test helper
 func NewUnitTester(t *testing.T) *Unit {
 	aclip.Unsupported = true
-	td, err := os.MkdirTemp("", "gopass-")
+	td, err := os.MkdirTemp("", "gosecret-")
 	assert.NoError(t, err)
 
 	u := &Unit{
@@ -77,7 +77,7 @@ func NewUnitTester(t *testing.T) *Unit {
 func (u Unit) initConfig() error {
 	return os.WriteFile(
 		u.GPConfig(),
-		[]byte(gopassConfig+"\npath: "+u.StoreDir("")+"\n"),
+		[]byte(gosecretConfig+"\npath: "+u.StoreDir("")+"\n"),
 		0600,
 	)
 }

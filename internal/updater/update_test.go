@@ -21,7 +21,7 @@ func TestIsUpdateable(t *testing.T) {
 		executable = oldExec
 	}()
 
-	td, err := os.MkdirTemp("", "gopass-")
+	td, err := os.MkdirTemp("", "gosecret-")
 	require.NoError(t, err)
 	defer func() {
 		_ = os.RemoveAll(td)
@@ -66,13 +66,13 @@ func TestIsUpdateable(t *testing.T) {
 				return os.Setenv("GOPATH", "/tmp/foo")
 			},
 			exec: func(context.Context) (string, error) {
-				return "/tmp/foo/gopass", nil
+				return "/tmp/foo/gosecret", nil
 			},
 		},
 		{
 			name: "stat error",
 			exec: func(context.Context) (string, error) {
-				return "/tmp/foo/gopass", nil
+				return "/tmp/foo/gosecret", nil
 			},
 		},
 		{
@@ -84,10 +84,10 @@ func TestIsUpdateable(t *testing.T) {
 		{
 			name: "no write access to file",
 			pre: func() error {
-				return os.WriteFile(filepath.Join(td, "gopass"), []byte("foobar"), 0555)
+				return os.WriteFile(filepath.Join(td, "gosecret"), []byte("foobar"), 0555)
 			},
 			exec: func(context.Context) (string, error) {
-				return filepath.Join(td, "gopass"), nil
+				return filepath.Join(td, "gosecret"), nil
 			},
 		},
 		{

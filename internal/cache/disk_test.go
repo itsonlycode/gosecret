@@ -10,7 +10,7 @@ import (
 )
 
 func TestOnDisk(t *testing.T) {
-	td, err := os.MkdirTemp("", "gopass-")
+	td, err := os.MkdirTemp("", "gosecret-")
 	require.NoError(t, err)
 
 	defer func() {

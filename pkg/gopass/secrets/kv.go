@@ -8,11 +8,11 @@ import (
 	"sort"
 	"strings"
 
-	"github.com/gopasspw/gopass/pkg/debug"
-	"github.com/gopasspw/gopass/pkg/gopass"
+	"github.com/itsonlycode/gosecret/pkg/debug"
+	"github.com/itsonlycode/gosecret/pkg/gosecret"
 )
 
-var _ gopass.Secret = &KV{}
+var _ gosecret.Secret = &KV{}
 
 // NewKV creates a new KV secret
 func NewKV() *KV {
@@ -37,7 +37,7 @@ func NewKVWithData(pw string, kvps map[string][]string, body string, converted b
 
 // KV is a secret that contains a password line (maybe empty), any number of
 // lines of key-value pairs (defined as: contains a colon) and any number of
-// free text lines. This is the default secret format gopass uses and encourages.
+// free text lines. This is the default secret format gosecret uses and encourages.
 // It should be compatible with most other password store implementations and
 // works well with our vanity features (e.g. accessing single entries in secret).
 //
@@ -60,7 +60,7 @@ func NewKVWithData(pw string, kvps map[string][]string, body string, converted b
 // ---- | -------
 //    0 | foobar
 //    1 | hello: world
-//    2 | gopass: secret
+//    2 | gosecret: secret
 //    3 | Yo
 //    4 | Hi
 //
@@ -68,7 +68,7 @@ func NewKVWithData(pw string, kvps map[string][]string, body string, converted b
 //   - password: "foobar"
 //   - key-value pairs:
 //     - "hello": "world"
-//     - "gopass": "secret"
+//     - "gosecret": "secret"
 //   - body: "Yo\nHi"
 type KV struct {
 	password string
@@ -137,7 +137,7 @@ func (k *KV) Values(key string) ([]string, bool) {
 func (k *KV) Set(key string, value interface{}) error {
 	key = strings.ToLower(key)
 	if v, ok := k.data[key]; ok && len(v) > 1 {
-		return fmt.Errorf("cannot set key %s: this entry contains multiple same keys. Please use 'gopass edit' instead", key)
+		return fmt.Errorf("cannot set key %s: this entry contains multiple same keys. Please use 'gosecret edit' instead", key)
 	}
 	k.data[key] = []string{fmt.Sprintf("%s", value)}
 	return nil

@@ -7,11 +7,11 @@ import (
 	"testing"
 
 	"github.com/fatih/color"
-	"github.com/gopasspw/gopass/internal/out"
-	"github.com/gopasspw/gopass/internal/tree"
-	"github.com/gopasspw/gopass/pkg/ctxutil"
-	"github.com/gopasspw/gopass/pkg/gopass/secrets"
-	"github.com/gopasspw/gopass/tests/gptest"
+	"github.com/itsonlycode/gosecret/internal/out"
+	"github.com/itsonlycode/gosecret/internal/tree"
+	"github.com/itsonlycode/gosecret/pkg/ctxutil"
+	"github.com/itsonlycode/gosecret/pkg/gosecret/secrets"
+	"github.com/itsonlycode/gosecret/tests/gptest"
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
@@ -39,7 +39,7 @@ func TestList(t *testing.T) {
 	color.NoColor = true
 
 	assert.NoError(t, act.List(gptest.CliCtx(ctx, t)))
-	want := `gopass
+	want := `gosecret
 └── foo
 
 `
@@ -112,7 +112,7 @@ func TestListLimit(t *testing.T) {
 	color.NoColor = true
 
 	assert.NoError(t, act.List(gptest.CliCtx(ctx, t)))
-	want := `gopass
+	want := `gosecret
 └── foo
 
 `
