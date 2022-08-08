@@ -15,10 +15,8 @@ import (
 	"github.com/itsonlycode/gosecret/pkg/debug"
 	"github.com/itsonlycode/gosecret/pkg/fsutil"
 	"github.com/itsonlycode/gosecret/pkg/gosecret/secrets"
-	"github.com/itsonlycode/gosecret/pkg/pwgen"
 	"github.com/itsonlycode/gosecret/pkg/pwgen/pwrules"
 	"github.com/itsonlycode/gosecret/pkg/termio"
-	"github.com/martinhoefling/goxkcdpwgen/xkcdpwgen"
 	"github.com/urfave/cli/v2"
 )
 
@@ -353,61 +351,4 @@ func (s *Action) createGeneric(ctx context.Context, c *cli.Context) error {
 	out.OKf(ctx, "Credentials saved to %q", name)
 
 	return s.createPrintOrCopy(ctx, c, name, password, genPw)
-}
-
-// createGeneratePasssword will walk through the password generation steps
-func (s *Action) createGeneratePassword(ctx context.Context, hostname string) (string, error) {
-	if _, found := pwrules.LookupRule(hostname); found {
-		out.Noticef(ctx, "Using password rules for %s ...", hostname)
-		length, err := termio.AskForInt(ctx, fmtfn(4, "b", "How long?"), defaultLength)
-		if err != nil {
-			return "", err
-		}
-		return pwgen.NewCrypticForDomain(length, hostname).Password(), nil
-	}
-	xkcd, err := termio.AskForBool(ctx, fmtfn(4, "a", "Human-pronounceable passphrase?"), false)
-	if err != nil {
-		return "", err
-	}
-	if xkcd {
-		length, err := termio.AskForInt(ctx, fmtfn(4, "b", "How many words?"), 4)
-		if err != nil {
-			return "", err
-		}
-		g := xkcdpwgen.NewGenerator()
-		g.SetNumWords(length)
-		g.SetDelimiter(" ")
-		g.SetCapitalize(true)
-		return string(g.GeneratePassword()), nil
-	}
-
-	length, err := termio.AskForInt(ctx, fmtfn(4, "b", "How long?"), defaultLength)
-	if err != nil {
-		return "", err
-	}
-
-	symbols, err := termio.AskForBool(ctx, fmtfn(4, "c", "Include symbols?"), false)
-	if err != nil {
-		return "", err
-	}
-
-	corp, err := termio.AskForBool(ctx, fmtfn(4, "d", "Strict rules?"), false)
-	if err != nil {
-		return "", err
-	}
-	if corp {
-		return pwgen.GeneratePasswordWithAllClasses(length, symbols)
-	}
-
-	return pwgen.GeneratePassword(length, symbols), nil
-}
-
-// createGeneratePIN will walk through the PIN generation steps
-func (s *Action) createGeneratePIN(ctx context.Context) (string, error) {
-	length, err := termio.AskForInt(ctx, fmtfn(4, "a", "How long?"), 4)
-	if err != nil {
-		return "", err
-	}
-
-	return pwgen.GeneratePasswordCharset(length, "0123456789"), nil
 }

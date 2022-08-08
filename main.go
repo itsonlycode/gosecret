@@ -1,8 +1,9 @@
 // Copyright 2021 The gosecret Authors. All rights reserved.
+//
 // Use of this source code is governed by the MIT license,
 // that can be found in the LICENSE file.
 
-// Gopass implements the gosecret command line tool.
+// Gosecret implements the gosecret command line tool.
 package main
 
 import (
@@ -17,7 +18,6 @@ import (
 	"sort"
 	"time"
 
-	"github.com/itsonlycode/gosecret/internal/action/pwgen"
 	_ "github.com/itsonlycode/gosecret/internal/backend/crypto"
 	"github.com/itsonlycode/gosecret/internal/backend/crypto/gpg"
 	_ "github.com/itsonlycode/gosecret/internal/backend/storage"
@@ -39,7 +39,7 @@ import (
 )
 
 const (
-	name = "gosocial"
+	name = "gosecret"
 )
 
 var (
@@ -52,7 +52,7 @@ var (
 )
 
 func main() {
-	if cp := os.Getenv("GOPASS_CPU_PROFILE"); cp != "" {
+	if cp := os.Getenv("GOSECRET_CPU_PROFILE"); cp != "" {
 		f, err := os.Create(cp)
 		if err != nil {
 			log.Fatalf("could not create CPU profile at %s: %s", cp, err)
@@ -97,7 +97,7 @@ func main() {
 		log.Fatal(err)
 	}
 	q.Wait(ctx)
-	if mp := os.Getenv("GOPASS_MEM_PROFILE"); mp != "" {
+	if mp := os.Getenv("GOSECRET_MEM_PROFILE"); mp != "" {
 		f, err := os.Create(mp)
 		if err != nil {
 			log.Fatalf("could not write mem profile to %s: %s", mp, err)
@@ -134,7 +134,7 @@ func setupApp(ctx context.Context, sv semver.Version) (context.Context, *cli.App
 
 	app.Name = name
 	app.Version = sv.String()
-	app.Usage = "The standard unix password manager - rewritten in Go"
+	app.Usage = "Secret manager"
 	app.EnableBashCompletion = true
 	app.BashComplete = func(c *cli.Context) {
 		cli.DefaultAppComplete(c)

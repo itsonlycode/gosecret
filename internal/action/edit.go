@@ -10,7 +10,6 @@ import (
 	"github.com/itsonlycode/gosecret/internal/out"
 	"github.com/itsonlycode/gosecret/pkg/ctxutil"
 	"github.com/itsonlycode/gosecret/pkg/gosecret/secrets"
-	"github.com/itsonlycode/gosecret/pkg/pwgen"
 	"github.com/itsonlycode/gosecret/pkg/termio"
 
 	"github.com/urfave/cli/v2"

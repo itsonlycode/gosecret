@@ -17,17 +17,10 @@ import (
 	"github.com/itsonlycode/gosecret/pkg/ctxutil"
 	"github.com/itsonlycode/gosecret/pkg/debug"
 	"github.com/itsonlycode/gosecret/pkg/gosecret"
-	"github.com/itsonlycode/gosecret/pkg/pwgen"
 	"github.com/itsonlycode/gosecret/pkg/pwgen/pwrules"
-	"github.com/itsonlycode/gosecret/pkg/pwgen/xkcdgen"
 	"github.com/itsonlycode/gosecret/pkg/termio"
 
 	"github.com/urfave/cli/v2"
-)
-
-const (
-	defaultLength     = 24
-	defaultXKCDLength = 4
 )
 
 var (
@@ -158,111 +151,6 @@ func hasPwRuleForSecret(name string) (string, pwrules.Rule) {
 		name = path.Dir(name)
 	}
 	return "", pwrules.Rule{}
-}
-
-// generatePassword will run through the password generation steps
-func (s *Action) generatePassword(ctx context.Context, c *cli.Context, length, name string) (string, error) {
-	if domain, rule := hasPwRuleForSecret(name); domain != "" {
-		out.Printf(ctx, "Using password rules for %s ...", domain)
-		wl := 16
-		if iv, err := strconv.Atoi(length); err == nil {
-			if iv < rule.Minlen {
-				iv = rule.Minlen
-			}
-			if iv > rule.Maxlen {
-				iv = rule.Maxlen
-			}
-			wl = iv
-		}
-
-		question := fmt.Sprintf("How long should the password be? (min: %d, max: %d)", rule.Minlen, rule.Maxlen)
-		iv, err := termio.AskForInt(ctx, question, wl)
-		if err != nil {
-			return "", ExitError(ExitUsage, err, "password length must be a number")
-		}
-
-		pw := pwgen.NewCrypticForDomain(iv, domain).Password()
-		if pw == "" {
-			return "", fmt.Errorf("failed to generate password for %s", domain)
-		}
-
-		return pw, nil
-	}
-
-	symbols := false
-	if c.IsSet("symbols") {
-		symbols = c.Bool("symbols")
-	}
-
-	var pwlen int
-	if length == "" {
-		candidateLength := defaultLength
-		question := "How long should the password be?"
-		iv, err := termio.AskForInt(ctx, question, candidateLength)
-		if err != nil {
-			return "", ExitError(ExitUsage, err, "password length must be a number")
-		}
-		pwlen = iv
-	} else {
-		iv, err := strconv.Atoi(length)
-		if err != nil {
-			return "", ExitError(ExitUsage, err, "password length must be a number")
-		}
-		pwlen = iv
-	}
-
-	if pwlen < 1 {
-		return "", ExitError(ExitUsage, nil, "password length must not be zero")
-	}
-
-	switch c.String("generator") {
-	case "xkcd":
-		return s.generatePasswordXKCD(ctx, c, length)
-	case "memorable":
-		if c.Bool("strict") {
-			return pwgen.GenerateMemorablePassword(pwlen, symbols, true), nil
-		}
-		return pwgen.GenerateMemorablePassword(pwlen, symbols, false), nil
-	case "external":
-		return pwgen.GenerateExternal(pwlen)
-	default:
-		if c.Bool("strict") {
-			return pwgen.GeneratePasswordWithAllClasses(pwlen, symbols)
-		}
-		return pwgen.GeneratePassword(pwlen, symbols), nil
-	}
-}
-
-// generatePasswordXKCD walks through the steps necessary to create an XKCD-style
-// password
-func (s *Action) generatePasswordXKCD(ctx context.Context, c *cli.Context, length string) (string, error) {
-	xkcdSeparator := " "
-	if c.IsSet("sep") {
-		xkcdSeparator = c.String("sep")
-	}
-
-	var pwlen int
-	if length == "" {
-		candidateLength := defaultXKCDLength
-		question := "How many words should be combined to a password?"
-		iv, err := termio.AskForInt(ctx, question, candidateLength)
-		if err != nil {
-			return "", ExitError(ExitUsage, err, "password length must be a number")
-		}
-		pwlen = iv
-	} else {
-		iv, err := strconv.Atoi(length)
-		if err != nil {
-			return "", ExitError(ExitUsage, err, "password length must be a number: %s", err)
-		}
-		pwlen = iv
-	}
-
-	if pwlen < 1 {
-		return "", ExitError(ExitUsage, nil, "password length must not be zero")
-	}
-
-	return xkcdgen.RandomLengthDelim(pwlen, xkcdSeparator, c.String("lang"))
 }
 
 // generateSetPassword will update or create a secret

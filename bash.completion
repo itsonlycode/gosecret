@@ -1,4 +1,4 @@
-_gopass_bash_autocomplete() {
+_gosecret_bash_autocomplete() {
      local cur opts base
      COMPREPLY=()
      cur="${COMP_WORDS[COMP_CWORD]}"
@@ -8,4 +8,4 @@ _gopass_bash_autocomplete() {
      return 0
  }
 
-complete -F _gopass_bash_autocomplete gopass
+complete -F _gosecret_bash_autocomplete gosecret

@@ -22,9 +22,8 @@ func NewKV() *KV {
 }
 
 // NewKVWithData returns a new KV secret populated with data
-func NewKVWithData(pw string, kvps map[string][]string, body string, converted bool) *KV {
+func NewKVWithData(kvps map[string][]string, body string, converted bool) *KV {
 	kv := &KV{
-		password: pw,
 		data:     make(map[string][]string, len(kvps)),
 		body:     body,
 		fromMime: converted,
@@ -35,18 +34,15 @@ func NewKVWithData(pw string, kvps map[string][]string, body string, converted b
 	return kv
 }
 
-// KV is a secret that contains a password line (maybe empty), any number of
+// KV is a secret that contains any number of
 // lines of key-value pairs (defined as: contains a colon) and any number of
 // free text lines. This is the default secret format gosecret uses and encourages.
-// It should be compatible with most other password store implementations and
-// works well with our vanity features (e.g. accessing single entries in secret).
 //
 // Format
 // ------
 // Line | Description
 // ---- | -----------
-//    0 | Password. Must contain the "password" or be empty. Can not be omitted.
-//  1-n | Key-Value pairs, e.g. "key: value". Can be omitted but the secret
+//  0-n | Key-Value pairs, e.g. "key: value". Can be omitted but the secret
 //      | might get parsed as a "Plain" secret if zero key-value pairs are found.
 //  n+1 | Body. Can contain any number of characters that will be parsed as
 //      | UTF-8 and appended to an internal string. Note: Technically this can
@@ -58,20 +54,17 @@ func NewKVWithData(pw string, kvps map[string][]string, body string, converted b
 // -------
 // Line | Content
 // ---- | -------
-//    0 | foobar
-//    1 | hello: world
-//    2 | gosecret: secret
-//    3 | Yo
-//    4 | Hi
+//    0 | hello: world
+//    1 | gosecret: secret
+//    2 | Yo
+//    3 | Hi
 //
 // This would be parsed as a KV secret that contains:
-//   - password: "foobar"
 //   - key-value pairs:
 //     - "hello": "world"
 //     - "gosecret": "secret"
 //   - body: "Yo\nHi"
 type KV struct {
-	password string
 	data     map[string][]string
 	body     string
 	fromMime bool
@@ -80,8 +73,6 @@ type KV struct {
 // Bytes serializes
 func (k *KV) Bytes() []byte {
 	buf := &bytes.Buffer{}
-	buf.WriteString(k.password)
-	buf.WriteString("\n")
 	for ik, key := range k.Keys() {
 		sv, ok := k.data[key]
 		if !ok {
@@ -163,27 +154,12 @@ func (k *KV) Body() string {
 	return k.body
 }
 
-// Password returns the password
-func (k *KV) Password() string {
-	return k.password
-}
-
-// SetPassword updates the password
-func (k *KV) SetPassword(p string) {
-	k.password = p
-}
-
 // ParseKV tries to parse a KV secret
 func ParseKV(in []byte) (*KV, error) {
 	k := &KV{
 		data: make(map[string][]string, 10),
 	}
 	r := bufio.NewReader(bytes.NewReader(in))
-	line, err := r.ReadString('\n')
-	if err != nil {
-		return nil, err
-	}
-	k.password = strings.TrimRight(line, "\n")
 
 	var sb strings.Builder
 	for {
